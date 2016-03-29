@@ -1,15 +1,24 @@
 {
-    "env": {
-        "es6": true,
-        "browser": true,
-        "commonjs": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-console": 0,
-        "semi": 1
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
+  },
+  "rules": {
+    "no-console": 0,
+    "semi": 1
+  }
 }

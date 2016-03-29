@@ -1,11 +1,13 @@
 /*eslint-env node */
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  entry: './src/js/entry.js',
+  entry: './src/js/main.js',
   output: {
     path: './build',
     filename: 'bundle.js'
   },
-  devtool: '#cheap-source-map',
+  devtool: '#source-map',
   module: {
     loaders: [
       {
@@ -20,5 +22,12 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'lexdesk web-client',
+      filename: 'index.html',
+      template: './src/index.html'
+    })
+  ]
 };
