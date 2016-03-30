@@ -19,6 +19,7 @@
   },
   "rules": {
     "no-console": 0,
-    "semi": 1
+    "semi": 1,
+    "react/prop-types": 0
   }
 }

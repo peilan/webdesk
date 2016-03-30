@@ -1,3 +1,7 @@
+.link-active {
+  color: green
+}
+
 .list {
     position: absolute;
     left: 0;
