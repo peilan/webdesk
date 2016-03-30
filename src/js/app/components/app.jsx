@@ -1,10 +1,13 @@
-const React = require('react');
-const Note = require('./note.jsx');
+import React from 'react';
+import Note from './note.jsx';
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
-    return <Note />;
+    return (
+      <div>
+        <input type="text"></input>
+        <Note />
+      </div>
+    );
   }
 }
-
-module.exports = App;
