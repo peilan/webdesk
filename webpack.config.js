@@ -1,33 +1,42 @@
 /*eslint-env node */
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    './src/js/index'
+  ],
   output: {
-    path: './build',
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   devtool: '#source-map',
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style!css'
-      }, {
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015']
-        }
-      }
-    ]
-  },
   plugins: [
-    new HtmlWebpackPlugin({
+    new webpack.HotModuleReplacementPlugin(),
+    new htmlWebpackPlugin({
       title: 'lexdesk web-client',
       filename: 'index.html',
       template: './src/index.html'
     })
-  ]
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        include: path.join(__dirname, 'src'),
+        loaders: [
+          'react-hot',
+          'babel'
+        ]
+      }, {
+        test: /\.css$/,
+        loader: 'style!css'
+      }
+    ]
+  }
 };

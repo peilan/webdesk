@@ -15,6 +15,7 @@ class Projects extends React.Component {
         <ul>
           <li><NavLink to="/projects/1">Name1</NavLink></li>
           <li><NavLink to="/projects/2">Name2</NavLink></li>
+          <li><NavLink to="/projects/3">Name3</NavLink></li>
           <li>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <input type="text" placeholder="id"/> / {' '}
