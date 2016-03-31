@@ -7,8 +7,8 @@ export default React.createClass({
       <div>
         <h1>
           <NavLink to="/" onlyActiveOnIndex={true}>Lexema helpdesk</NavLink>{" "}
-          <NavLink to="/about">(about)</NavLink>{" "}
-          <NavLink to="/projects">Проекты</NavLink>
+          <NavLink to="/projects">Проекты</NavLink>{" "}
+          <NavLink to="/about">(?)</NavLink>
         </h1>
         {this.props.children}
       </div>
