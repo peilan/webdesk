@@ -2,6 +2,11 @@
   color: green
 }
 
+ul.horizontal-menu li {
+  display: inline;
+  padding-right: 10px;
+}
+
 .list {
     position: absolute;
     left: 0;

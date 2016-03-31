@@ -12,16 +12,15 @@ class Projects extends React.Component {
   render() {
     return (
       <div>
-        <ul>
-          <li><NavLink to="/projects/1">Name1</NavLink></li>
-          <li><NavLink to="/projects/2">Name2</NavLink></li>
-          <li><NavLink to="/projects/3">Name3</NavLink></li>
+        <ul role="nav" className="horizontal-menu">
           <li>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <input type="text" placeholder="id"/> / {' '}
-              <button type="submit">Go</button>
-            </form>
+            <NavLink to="/projects">Проекты</NavLink>
           </li>
+        </ul>
+        <ul>
+          <li><NavLink to="/projects/1">Проект 1</NavLink></li>
+          <li><NavLink to="/projects/2">Проект 2</NavLink></li>
+          <li><NavLink to="/projects/3">Проект 3</NavLink></li>
         </ul>
         {this.props.children}
       </div>

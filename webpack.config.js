@@ -20,7 +20,8 @@ module.exports = {
     new htmlWebpackPlugin({
       title: 'lexdesk web-client',
       filename: 'index.html',
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: './src/favicon.ico'
     })
   ],
   module: {

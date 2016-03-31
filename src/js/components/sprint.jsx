@@ -1,9 +1,9 @@
 import React from 'react';
 import NavLink from './navlink.jsx';
 
-export default class Project extends React.Component {
+export default class Sprint extends React.Component {
   render() {
-    let projectId = this.props.params.projectId;
+    let { projectId, sprintId } = this.props.params;
 
     return (
       <div>
@@ -14,16 +14,11 @@ export default class Project extends React.Component {
           <li>
             <NavLink to={`/projects/${projectId}`}>Проект {" " + projectId}</NavLink>
           </li>
-        </ul>
-        <ul role="nav">
           <li>
             <NavLink to={`/projects/${projectId}/sprints`}>Спринты</NavLink>
           </li>
           <li>
-            <NavLink to={`/projects/${projectId}/tickets`}>Заявки</NavLink>
-          </li>
-          <li>
-            <NavLink to={`/projects/${projectId}/news`}>Новости</NavLink>
+            <NavLink to={`/projects/${projectId}/sprints/${sprintId}`}>Спринт {" " + sprintId}</NavLink>
           </li>
         </ul>
       </div>

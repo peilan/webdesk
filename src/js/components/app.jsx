@@ -5,11 +5,11 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <h1><NavLink to="/" onlyActiveOnIndex={true}>Lexema helpdesk</NavLink></h1>
-        <ul role="nav">
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/projects">Projects</NavLink></li>
-        </ul>
+        <h1>
+          <NavLink to="/" onlyActiveOnIndex={true}>Lexema helpdesk</NavLink>{" "}
+          <NavLink to="/about">(about)</NavLink>{" "}
+          <NavLink to="/projects">Проекты</NavLink>
+        </h1>
         {this.props.children}
       </div>
     );
