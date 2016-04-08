@@ -89,7 +89,7 @@ export default class Sprint extends React.Component {
         <table className="tickets">
           <tbody>
             <tr>
-              <th>Название</th><th>Оценка</th><th>Взять</th>
+              <th>Название 5</th><th>Оценка test</th><th>Взять</th>
             </tr>
             { tickets.map((ticket) => {
               return (
@@ -98,7 +98,7 @@ export default class Sprint extends React.Component {
               })
             }
             <tr>
-              <td><b>Total</b></td><td>{total}</td><td></td>
+              <td><b>Total1</b></td><td>{total}</td><td></td>
             </tr>
           </tbody>
         </table>
