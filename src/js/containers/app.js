@@ -1,20 +1,34 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Page from '../components/page'
-import User from '../components/user'
-import * as pageActions from '../actions/pageActions'
+import TextBox from '../components/textBox'
+import Button from '../components/button'
+import Lookup from '../components/lookup'
+import Label from '../components/label'
+import * as calcActions from '../actions/calcActions'
 
 class App extends Component {
   render() {
-    const { user, page } = this.props;
-    const { getPhotos } = this.props.pageActions;
+    const { first, second, operation, result } = this.props.calc;
+    const {
+      setFirst,
+      setSecond,
+      setOperation,
+      calculate
+    } = this.props.calcActions;
+    const list = [
+      { value: 'addition', label: 'сложение' },
+      { value: 'substraction', label: 'вычитание' },
+      { value: 'multiplication', label: 'умножение' }
+    ];
 
     return (
       <div>
-        <User name={user.name}/>
-        <Page photos={page.photos} year={page.year} getPhotos={getPhotos}
-          fetching={page.fetching}/>
+        <TextBox value={first} onChange={setFirst}/>
+        <Lookup value={operation} list={list} onChange={setOperation}/>
+        <TextBox value={second} onChange={setSecond}/>
+        <Button value="calculate" onClick={calculate}/>
+        <Label value={result}/>
       </div>
     )
   }
@@ -22,14 +36,13 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
-    page: state.page
+    calc: state.calc
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    pageActions: bindActionCreators(pageActions, dispatch)
+    calcActions: bindActionCreators(calcActions, dispatch)
   }
 }
 
