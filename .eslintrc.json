@@ -14,12 +14,12 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "rules": {
     "no-console": 0,
-    "semi": 1,
     "react/prop-types": 0
   }
 }
