@@ -19,5 +19,5 @@ export default class TextBox extends Component {
 
 TextBox.propTypes = {
   value: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func
 }

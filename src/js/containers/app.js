@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import TextBox from '../components/textBox'
-import Button from '../components/button'
-import Lookup from '../components/lookup'
-import Label from '../components/label'
 import * as calcActions from '../actions/calcActions'
+import platform from '../platform'
 
 class App extends Component {
   render() {
+    const { Group, TextBox, Lookup, Button, Label } = platform().controls;
     const { first, second, operation, result } = this.props.calc;
     const {
       setFirst,
@@ -19,17 +17,18 @@ class App extends Component {
     const list = [
       { value: 'addition', label: 'сложение' },
       { value: 'substraction', label: 'вычитание' },
-      { value: 'multiplication', label: 'умножение' }
+      { value: 'multiplication', label: 'умножение' },
+      { value: 'alarm', label: 'алярм' }
     ];
 
     return (
-      <div>
+      <Group>
         <TextBox value={first} onChange={setFirst}/>
         <Lookup value={operation} list={list} onChange={setOperation}/>
         <TextBox value={second} onChange={setSecond}/>
         <Button value="calculate" onClick={calculate}/>
         <Label value={result}/>
-      </div>
+      </Group>
     )
   }
 }
