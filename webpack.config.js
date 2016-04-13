@@ -21,7 +21,7 @@ module.exports = {
       title: 'lexdesk web-client',
       filename: 'index.html',
       template: './src/index.html',
-      favicon: './src/favicon.ico'
+      favicon: './favicon.ico'
     })
   ],
   module: {
