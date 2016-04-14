@@ -3,8 +3,7 @@ import {
   SET_SECOND,
   SET_OPERATION,
   CALCULATE
-} from '../constants/calc'
-import platform from '../platform'
+} from './constants'
 
 const initialState = {
   first: 0,
@@ -13,25 +12,26 @@ const initialState = {
   operation: 'addition'
 }
 
-function calculate({ first, second, operation }) {
+function calculate(state, alarm) {
+  const { first, second, operation } = state;
+
   switch (operation) {
     case 'alarm':
-      if (platform().alarm) {
-        platform().alarm(first + ', ' + second)
+      if (alarm) {
+        alarm(`${first}, ${second}`);
       }
-
-      return 0;
+      return state;
     case 'substraction':
-      return first - second;
+      return { ...state, result: first - second };
     case 'multiplication':
-      return first * second;
+      return { ...state, result: first * second };
     case 'addition':
     default:
-      return first + second;
+      return { ...state, result: first + second };
   }
 }
 
-export default (state = initialState, action) => {
+export default (alarm) => (state = initialState, action) => {
   switch (action.type) {
     case SET_FIRST:
       return { ...state, first: action.payload };
@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
     case SET_OPERATION:
       return { ...state, operation: action.payload };
     case CALCULATE:
-      return { ...state, result: calculate(state) }
+      return calculate(state, alarm)
     default:
       return state;
   }

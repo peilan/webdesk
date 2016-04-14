@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as calcActions from '../actions/calcActions'
-import platform from '../platform'
+import * as calcActions from './actions'
 
-class App extends Component {
+class Calc extends Component {
+  handleAlarm() {
+    if (this.props.alarm) {
+      alert('alarm');
+    }
+  }
   render() {
-    const { Group, TextBox, Lookup, Button, Label } = platform().controls;
+    const { Group, TextBox, Lookup, Button, Label } = this.props.controls;
     const { first, second, operation, result } = this.props.calc;
     const {
       setFirst,
@@ -28,6 +32,7 @@ class App extends Component {
         <TextBox value={second} onChange={setSecond}/>
         <Button value="calculate" onClick={calculate}/>
         <Label value={result}/>
+        {() => this.handleAlarm()}
       </Group>
     )
   }
@@ -45,4 +50,8 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+Calc.propTypes = {
+  controls: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calc)

@@ -19,7 +19,7 @@ export default class Lookup extends Component {
 }
 
 Lookup.propTypes = {
-  value: PropTypes.string.isRequired,
-  list: PropTypes.array.isRequired,
+  value: PropTypes.string,
+  list: PropTypes.array,
   onChange: PropTypes.func
 }

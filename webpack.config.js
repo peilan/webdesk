@@ -5,7 +5,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:3333',
     'webpack/hot/only-dev-server',
     './src/js/index'
   ],

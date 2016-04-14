@@ -18,6 +18,6 @@ export default class TextBox extends Component {
 }
 
 TextBox.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   onChange: PropTypes.func
 }

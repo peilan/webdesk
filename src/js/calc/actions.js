@@ -3,7 +3,7 @@ import {
   SET_SECOND,
   SET_OPERATION,
   CALCULATE
-} from '../constants/calc'
+} from './constants'
 
 export function setFirst(value) {
   return {

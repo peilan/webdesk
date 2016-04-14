@@ -11,5 +11,5 @@ export default class Label extends Component {
 }
 
 Label.propTypes = {
-  value: PropTypes.number.isRequired
+  value: PropTypes.number
 }

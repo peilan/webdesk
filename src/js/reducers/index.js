@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux'
-import calc from './calc'
+import createReducer from '../calc/createReducer'
+import alarm from '../utils/alarm'
+
+const calc = createReducer(alarm)
 
 export default combineReducers({
   calc
