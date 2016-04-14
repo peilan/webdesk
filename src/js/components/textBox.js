@@ -18,6 +18,6 @@ export default class TextBox extends Component {
 }
 
 TextBox.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.any,
   onChange: PropTypes.func
 }

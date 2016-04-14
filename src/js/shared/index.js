@@ -4,11 +4,6 @@ import { connect } from 'react-redux'
 import * as calcActions from './actions'
 
 class Calc extends Component {
-  handleAlarm() {
-    if (this.props.alarm) {
-      alert('alarm');
-    }
-  }
   render() {
     const { Group, TextBox, Lookup, Button, Label } = this.props.controls;
     const { first, second, operation, result } = this.props.calc;
@@ -27,12 +22,11 @@ class Calc extends Component {
 
     return (
       <Group>
-        <TextBox value={first} onChange={setFirst}/>
+        <TextBox value={first || ''} onChange={setFirst}/>
         <Lookup value={operation} list={list} onChange={setOperation}/>
-        <TextBox value={second} onChange={setSecond}/>
+        <TextBox value={second || ''} onChange={setSecond}/>
         <Button value="calculate" onClick={calculate}/>
-        <Label value={result}/>
-        {() => this.handleAlarm()}
+        <Label value={result || ''}/>
       </Group>
     )
   }

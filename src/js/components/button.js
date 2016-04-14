@@ -13,6 +13,6 @@ export default class Button extends Component {
 }
 
 Button.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.any,
   onClick: PropTypes.func
 }
