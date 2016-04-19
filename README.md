@@ -1,5 +1,4 @@
 # webdesk
-lexema helpdesk web-client
 
 commands:
 * npm run build - build project to /build
