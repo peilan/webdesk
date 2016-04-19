@@ -11,13 +11,12 @@ class Calc extends Component {
       setFirst,
       setSecond,
       setOperation,
-      calculate
+      alarm
     } = this.props.calcActions;
     const list = [
       { value: 'addition', label: 'сложение' },
       { value: 'substraction', label: 'вычитание' },
-      { value: 'multiplication', label: 'умножение' },
-      { value: 'alarm', label: 'алярм' }
+      { value: 'multiplication', label: 'умножение' }
     ];
 
     return (
@@ -25,7 +24,7 @@ class Calc extends Component {
         <TextBox value={first || ''} onChange={setFirst}/>
         <Lookup value={operation} list={list} onChange={setOperation}/>
         <TextBox value={second || ''} onChange={setSecond}/>
-        <Button value="calculate" onClick={calculate}/>
+        <Button value="alarm" onClick={alarm}/>
         <Label value={result || ''}/>
       </Group>
     )

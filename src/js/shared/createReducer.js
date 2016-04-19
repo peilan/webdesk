@@ -2,7 +2,7 @@ import {
   SET_FIRST,
   SET_SECOND,
   SET_OPERATION,
-  CALCULATE
+  ALARM
 } from './constants'
 
 const initialState = {
@@ -12,39 +12,36 @@ const initialState = {
   operation: 'addition'
 }
 
-function calculate(state, alarm) {
-  let { first, second, operation } = state;
-
+function calculate(first, second, operation) {
   first = parseInt(first, 10)
   second = parseInt(second, 10)
 
   switch (operation) {
-    case 'alarm':
-      if (alarm) {
-        alarm(`first: ${first}, second: ${second}`);
-      }
-      return state;
     case 'substraction':
-      return {...state, result: first - second}
+      return first - second;
     case 'multiplication':
-      return {...state, result: first * second}
+      return first * second;
     case 'addition':
-      return {...state, result: first + second}
+      return first + second;
     default:
-      return state
+      return 0;
   }
 }
 
 export default (alarm) => (state = initialState, action) => {
   switch (action.type) {
     case SET_FIRST:
-      return {...state, first: action.payload }
+      return {...state, first: action.payload,
+        result: calculate(action.payload, state.second, state.operation) }
     case SET_SECOND:
-      return {...state, second: action.payload }
+      return {...state, second: action.payload,
+        result: calculate(state.first, action.payload, state.operation) }
     case SET_OPERATION:
-      return {...state, operation: action.payload }
-    case CALCULATE:
-      return calculate(state, alarm)
+      return {...state, operation: action.payload,
+        result: calculate(state.first, state.second, action.payload) }
+    case ALARM:
+      alarm(`first: ${state.first}, second: ${state.second}`);
+      return state;
     default:
       return state;
   }

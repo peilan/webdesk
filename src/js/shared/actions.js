@@ -2,7 +2,7 @@ import {
   SET_FIRST,
   SET_SECOND,
   SET_OPERATION,
-  CALCULATE
+  ALARM
 } from './constants'
 
 export function setFirst(value) {
@@ -26,8 +26,8 @@ export function setOperation(value) {
   }
 }
 
-export function calculate() {
+export function alarm() {
   return {
-    type: CALCULATE
+    type: ALARM
   }
 }
