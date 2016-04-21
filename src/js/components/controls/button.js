@@ -5,9 +5,7 @@ export default class Button extends Component {
     const { value, onClick } = this.props;
 
     return (
-      <div>
         <input type="button" value={value} onClick={onClick}/>
-      </div>
     );
   }
 }

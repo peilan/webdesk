@@ -1,24 +1,35 @@
+import '../css/style.css'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import Calc from './shared'
+import { Router, Route, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import App from './containers/app'
 import configureStore from './store/configureStore'
 import DevTools from './containers/devtools'
-import Group from './components/group'
-import TextBox from './components/textBox'
-import Button from './components/button'
-import Lookup from './components/lookup'
-import Label from './components/label'
 
 const store = configureStore();
-const controls = { Group, TextBox, Button, Lookup, Label }
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
-  <Provider store={store}>
     <div>
-      <Calc controls={controls}/>
+      <Provider store={store}>
+        <Router history={history}>
+          <Route path="/" component={App}>
+            <Route path="projects" component={ProjectList}>
+              <Route path=":projectId" component={ProjectForm}/>
+            </Route>
+          </Route>
+        </Router>
+      </Provider>
       <DevTools/>
-    </div>
-  </Provider>,
+    </div>,
   document.getElementById('root')
 )
+
+/*
+<div>
+  <App controls={controls}/>
+  <DevTools/>
+</div>
+*/

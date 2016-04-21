@@ -5,7 +5,7 @@ export default class Label extends Component {
     const { value } = this.props;
 
     return (
-      <div>{value}</div>
+      <span>{value}</span>
     );
   }
 }

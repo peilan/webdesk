@@ -10,9 +10,7 @@ export default class TextBox extends Component {
     const { value } = this.props;
 
     return (
-      <div>
-        <input type="text" value={value} onChange={this.onChange.bind(this)}/>
-      </div>
+      <input type="text" value={value} onChange={this.onChange.bind(this)}/>
     );
   }
 }

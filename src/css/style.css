@@ -1,3 +1,11 @@
+.app-header {
+  border: 1px solid green;
+}
+
+.app-navigation {
+  border: 1px solid gray;
+}
+
 .link-active {
   color: green
 }

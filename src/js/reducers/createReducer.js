@@ -3,7 +3,7 @@ import {
   SET_SECOND,
   SET_OPERATION,
   ALARM
-} from './constants'
+} from '../constants'
 
 const initialState = {
   first: 0,
