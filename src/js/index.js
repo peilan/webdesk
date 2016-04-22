@@ -4,9 +4,11 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import App from './containers/app'
 import configureStore from './store/configureStore'
-import DevTools from './containers/devtools'
+import Root from './components/root'
+import ProjectList from './components/projectList'
+import ProjectForm from './components/projectForm'
+import NewsList from './components/newsList'
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -15,21 +17,14 @@ render(
     <div>
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/" component={App}>
+          <Route path="/" component={Root}>
             <Route path="projects" component={ProjectList}>
               <Route path=":projectId" component={ProjectForm}/>
             </Route>
+            <Route path="news" component={NewsList}/>
           </Route>
         </Router>
       </Provider>
-      <DevTools/>
     </div>,
   document.getElementById('root')
 )
-
-/*
-<div>
-  <App controls={controls}/>
-  <DevTools/>
-</div>
-*/

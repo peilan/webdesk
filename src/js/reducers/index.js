@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import createReducer from './createReducer'
-
-const calc = createReducer(() => {})
+import { routerReducer } from 'react-router-redux'
 
 export default combineReducers({
-  calc
+  num(state = {}) {
+    return state;
+  },
+  routing: routerReducer
 })
