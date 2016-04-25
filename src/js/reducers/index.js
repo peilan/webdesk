@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import sprint from './sprint'
 
 export default combineReducers({
-  num(state = {}) {
-    return state;
-  },
+  sprint,
   routing: routerReducer
 })

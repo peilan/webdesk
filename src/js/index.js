@@ -15,6 +15,7 @@ import ProjectForm from './components/projectForm'
 import NewsList from './components/newsList'
 import SprintList from './components/sprintList'
 import TicketList from './components/ticketList'
+import SprintForm from './components/sprintForm.js'
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -27,12 +28,14 @@ render(
           <Route name="Проекты" path="projects" component={ProjectList}>
             <Route name="Проект" path=":projectId" component={ProjectForm}>
               <Route name="Новости" path="news" component={NewsList}/>
-              <Route name="Спринты" path="sprints" component={SprintList}/>
+              <Route name="Спринты" path="sprints" component={SprintList}>
+                <Route name="Спринт" path=":sprintId" component={SprintForm}/>
+              </Route>
               <Route name="Заявки" path="tickets" component={TicketList}/>
             </Route>
           </Route>
+          <Route name="Путь не найден" path="*" component={NotFound}/>
         </Route>
-        <Route path="*" component={NotFound}/>
       </Router>
     </Provider>,
   document.getElementById('root')
