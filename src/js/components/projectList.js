@@ -3,7 +3,7 @@ import NavLink from './controls/navlink'
 
 export default class ProjectList extends Component {
   render() {
-    let content = this.props.children ? this.props.children : (
+    return this.props.children ? this.props.children : (
       <div>
         <h3>Реестр проектов</h3>
         <ul>
@@ -20,7 +20,5 @@ export default class ProjectList extends Component {
         {this.props.children}
       </div>
     );
-
-    return content;
   }
 }

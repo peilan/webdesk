@@ -3,9 +3,10 @@ import NavLink from './controls/navlink'
 
 export default class ProjectForm extends Component {
   render() {
-    return (
+    return this.props.children ? this.props.children : (
       <div>
         <h3>Форма проекта</h3>
+        <div>Проект {this.props.params.projectId}</div>
         <ul>
           <li>
             <NavLink to="./news">Новости</NavLink>
@@ -17,6 +18,7 @@ export default class ProjectForm extends Component {
             <NavLink to="./tickets">Заявки</NavLink>
           </li>
         </ul>
+        {this.props.children}
       </div>
     );
   }
