@@ -3,22 +3,24 @@ import NavLink from './controls/navlink'
 
 export default class ProjectList extends Component {
   render() {
-    return (
+    let content = this.props.children ? this.props.children : (
       <div>
-        <h3>Projects</h3>
+        <h3>Реестр проектов</h3>
         <ul>
           <li>
-            <NavLink to="./1">1</NavLink>
+            <NavLink to="./1">первый</NavLink>
           </li>
           <li>
-            <NavLink to="./2">2</NavLink>
+            <NavLink to="./2">второй</NavLink>
           </li>
           <li>
-            <NavLink to="./3">3</NavLink>
+            <NavLink to="./3">третий</NavLink>
           </li>
         </ul>
         {this.props.children}
       </div>
     );
+
+    return content;
   }
 }

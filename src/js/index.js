@@ -12,23 +12,26 @@ import NotFound from './components/notFound'
 import ProjectList from './components/projectList'
 import ProjectForm from './components/projectForm'
 import NewsList from './components/newsList'
+import SprintList from './components/sprintList'
+import TicketList from './components/ticketList'
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
-    <div>
-      <Provider store={store}>
-        <Router history={history} render={applyMiddleware(useRelativeLinks())}>
-          <Route path="/" component={Root}>
-            <Route path="projects" component={ProjectList}>
-              <Route path=":projectId" component={ProjectForm}/>
+    <Provider store={store}>
+      <Router history={history} render={applyMiddleware(useRelativeLinks())}>
+        <Route name="Root" path="/" component={Root}>
+          <Route name="Проекты" path="projects" component={ProjectList}>
+            <Route name="Проект" path=":projectId" component={ProjectForm}>
+              <Route name="Новости" path="news" component={NewsList}/>
+              <Route name="Спринты" path="sprints" component={SprintList}/>
+              <Route name="Заявки" path="tickets" component={TicketList}/>
             </Route>
-            <Route path="news" component={NewsList}/>
-            <Route path="*" component={NotFound}/>
           </Route>
-        </Router>
-      </Provider>
-    </div>,
+        </Route>
+        <Route path="*" component={NotFound}/>
+      </Router>
+    </Provider>,
   document.getElementById('root')
 )

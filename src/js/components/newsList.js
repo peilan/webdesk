@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class NewsList extends Component {
   render() {
     return (
-      <div><h3>News</h3></div>
+      <div><h3>Новости</h3></div>
     );
   }
 }
