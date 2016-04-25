@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { RelativeLink } from 'react-router-relative-links'
 
 export default class NavLink extends React.Component {
   render() {
-    return <Link {...this.props} activeClassName="link-active"/>;
+    return <RelativeLink {...this.props} activeClassName="link-active"/>;
   }
 }
