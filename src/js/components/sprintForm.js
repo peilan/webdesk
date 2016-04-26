@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions'
 
 class SprintForm extends Component {
+  componentWillMount() {
+    this.props.actions.loadProjects();
+  }
+
   onToggleTicket() {
 
   }
@@ -19,7 +25,7 @@ class SprintForm extends Component {
             <tr>
               <th>Название 5</th><th>Оценка</th><th>Взять</th>
             </tr>
-            {tickets.map((ticket, index) => {
+            {tickets && tickets.map((ticket, index) => {
               return (
                 <tr key={index} className={ticket.active ? 'active' : ''}>
                   <td>
@@ -52,8 +58,10 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps() {
-  return {}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SprintForm)
