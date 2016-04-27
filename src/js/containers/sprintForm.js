@@ -5,7 +5,7 @@ import * as actions from '../actions'
 
 class SprintForm extends Component {
   componentWillMount() {
-    this.props.actions.loadProjects();
+    
   }
 
   onToggleTicket() {
@@ -20,7 +20,7 @@ class SprintForm extends Component {
       <div>
         <h3>Форма спринта</h3>
         <div>Заявки спринта {this.props.params.sprintId} ({name})</div>
-        <table className="tickets">
+        <table className="grid">
           <tbody>
             <tr>
               <th>Название 5</th><th>Оценка</th><th>Взять</th>

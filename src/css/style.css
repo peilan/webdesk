@@ -15,16 +15,16 @@ ul.horizontal-menu li {
   padding-right: 10px;
 }
 
-table.tickets, table.tickets td, table.tickets th {
+table.grid, table.grid td, table.grid th {
     border: 1px solid #aaa;
     border-collapse: collapse;
 }
 
-table.tickets tr.active {
+table.grid tr.active {
     background-color: #35cc00
 }
 
-table.tickets td, table.tickets th {
+table.grid td, table.grid th {
     width: 100px;
 }
 

@@ -10,12 +10,12 @@ import configureStore from './store/configureStore'
 import Root from './components/root'
 import Home from './components/home'
 import NotFound from './components/notFound'
-import ProjectList from './components/projectList'
+import ProjectList from './containers/projectList'
 import ProjectForm from './components/projectForm'
 import NewsList from './components/newsList'
 import SprintList from './components/sprintList'
 import TicketList from './components/ticketList'
-import SprintForm from './components/sprintForm.js'
+import SprintForm from './containers/sprintForm.js'
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);

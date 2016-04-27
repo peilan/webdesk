@@ -1,9 +1,9 @@
-import { LOAD_PROJECTS_START } from '../constants'
+import { LOAD_SPRINTS_START } from '../constants'
 const initialState = {}
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_PROJECTS_START:
+    case LOAD_SPRINTS_START:
       return {
         name: 'easy sprint',
         tickets: [
