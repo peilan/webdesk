@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import NavLink from './controls/navlink'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions'
+import NavLink from '../components/controls/navlink'
 
-export default class ProjectList extends Component {
+class ProjectList extends Component {
   render() {
     return this.props.children ? this.props.children : (
       <div>
@@ -22,3 +25,17 @@ export default class ProjectList extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    projects: state.projects || {}
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList)
