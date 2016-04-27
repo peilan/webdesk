@@ -20,7 +20,7 @@ class ProjectList extends Component {
               <tr>
                 <th>Id</th><th>Название</th><th>Создатель</th>
               </tr>
-              {projects && projects.map((project, index) => {
+              {projects.length && projects.map((project, index) => {
                 return (
                   <tr key={index}>
                     <td>
@@ -44,9 +44,7 @@ class ProjectList extends Component {
 
 function mapStateToProps(state) {
   return {
-    projects: Object.keys(state.projects).map((id) => {
-      return { id, ...state.projects[id] }
-    })
+    projects: state.projects
   }
 }
 

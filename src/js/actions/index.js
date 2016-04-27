@@ -4,7 +4,13 @@ import {
 } from '../constants'
 
 export function loadProjects() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState()
+
+    if (state.projects.length) {
+      return
+    }
+
     dispatch({
       type: LOAD_PROJECTS_START
     })
