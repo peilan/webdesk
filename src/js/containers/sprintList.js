@@ -3,8 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import Grid from '../components/controls/grid'
+import Spinner from '../components/controls/spinner'
 
 export default class SprintList extends Component {
+  componentWillMount() {
+    this.props.actions.loadProject(this.props.params.projectId);
+  }
+
   render() {
     const { project } = this.props;
     const columns = [
@@ -16,15 +21,17 @@ export default class SprintList extends Component {
     return (
       <div>
         <h3>Спринты</h3>
-        <div>Спринты проекта {this.props.params.projectId}</div>
-        <Grid rows={project.sprints} columns={columns}/>
+        <div>Спринты проекта {project.name}</div>
+          {project.sprints.length ? (
+            <Grid columns={columns} rows={project.sprints}/>
+          ) : <Spinner/>}
       </div>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const project = state.projects[ownProps.params.projectId];
+  const project = state.projects[ownProps.params.projectId] || {};
   return {
     project: {
       ...project,
