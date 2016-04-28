@@ -6,6 +6,10 @@ import NavLink from '../components/controls/navlink'
 
 class ProjectList extends Component {
   componentWillMount() {
+    if (this.props.children) {
+      return;
+    }
+
     this.props.actions.loadProjects();
   }
 

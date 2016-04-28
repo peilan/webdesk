@@ -10,6 +10,7 @@ import configureStore from './store/configureStore'
 import Root from './components/root'
 import Home from './components/home'
 import NotFound from './components/notFound'
+import Vertex from './components/vertex'
 import ProjectList from './containers/projectList'
 import ProjectForm from './components/projectForm'
 import NewsList from './components/newsList'
@@ -25,10 +26,13 @@ render(
       <Router history={history} render={applyMiddleware(useRelativeLinks())}>
         <Route name="Начало" path="/" component={Root}>
           <IndexRoute component={Home}/>
-          <Route name="Проекты" path="projects" component={ProjectList}>
-            <Route name="Проект" path=":projectId" component={ProjectForm}>
+          <Route name="Проекты" path="projects" component={Vertex}>
+            <IndexRoute component={ProjectList}/>
+            <Route name="Проект" path=":projectId" component={Vertex}>
+              <IndexRoute component={ProjectForm}/>
               <Route name="Новости" path="news" component={NewsList}/>
-              <Route name="Спринты" path="sprints" component={SprintList}>
+              <Route name="Спринты" path="sprints" component={Vertex}>
+                <IndexRoute component={SprintList}/>
                 <Route name="Спринт" path=":sprintId" component={SprintForm}/>
               </Route>
               <Route name="Заявки" path="tickets" component={TicketList}/>
