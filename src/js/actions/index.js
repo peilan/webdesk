@@ -21,7 +21,8 @@ export function loadProjects() {
         entities: {
           projects: {
             1: {
-              name: 'fisrt project'
+              name: 'fisrt project',
+              sprints: [1, 2, 3]
             },
             2: {
               name: 'project 42'

@@ -15,7 +15,7 @@ import Vertex from './components/vertex'
 import ProjectList from './containers/projectList'
 import ProjectForm from './containers/projectForm'
 import NewsList from './components/newsList'
-import SprintList from './components/sprintList'
+import SprintList from './containers/sprintList'
 import TicketList from './components/ticketList'
 import SprintForm from './containers/sprintForm.js'
 
