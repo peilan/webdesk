@@ -36,10 +36,6 @@ export function loadProjects() {
         type: LOAD_PROJECTS_SUCCESS,
         payload: data.entities.projects
       });
-      dispatch({
-        type: LOAD_SPRINTS_SUCCESS,
-        payload: data.entities.sprints
-      });
     }, 2000)
   }
 }
