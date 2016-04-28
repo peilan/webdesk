@@ -21,14 +21,48 @@ export function loadProjects() {
         entities: {
           projects: {
             1: {
-              name: 'fisrt project',
-              sprints: [1, 2, 3]
+              name: 'fisrt project'
             },
             2: {
               name: 'project 42'
             },
             3: {
               name: 'simple project'
+            }
+          }
+        }
+      };
+      dispatch({
+        type: LOAD_PROJECTS_SUCCESS,
+        payload: data.entities.projects
+      });
+      dispatch({
+        type: LOAD_SPRINTS_SUCCESS,
+        payload: data.entities.sprints
+      });
+    }, 2000)
+  }
+}
+
+export function loadProject(id) {
+  return (dispatch, getState) => {
+    const { projects } = getState()
+
+    if (projects[id] && projects[id].sprints) {
+      return
+    }
+
+    dispatch({
+      type: LOAD_PROJECTS_START
+    })
+
+    setTimeout(() => {
+      const data = {
+        entities: {
+          projects: {
+            [id]: {
+              name: 'some project',
+              sprints: [1, 2, 3]
             }
           },
           sprints: {
@@ -52,31 +86,6 @@ export function loadProjects() {
         type: LOAD_SPRINTS_SUCCESS,
         payload: data.entities.sprints
       });
-    }, 2000)
-  }
-}
-
-export function loadProject(id) {
-  return (dispatch, getState) => {
-    const { projects } = getState()
-
-    if (projects[id]) {
-      return
-    }
-
-    dispatch({
-      type: LOAD_PROJECTS_START
-    })
-
-    setTimeout(() => {
-      dispatch({
-        type: LOAD_PROJECTS_SUCCESS,
-        payload: {
-          [id]: {
-            name: 'fisrt project abc'
-          }
-        }
-      })
     }, 2000)
   }
 }
