@@ -6,10 +6,6 @@ import Grid from '../components/controls/grid'
 
 class ProjectList extends Component {
   componentWillMount() {
-    if (this.props.children) {
-      return;
-    }
-
     this.props.actions.loadProjects();
   }
 
