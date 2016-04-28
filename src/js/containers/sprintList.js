@@ -29,12 +29,12 @@ function mapStateToProps(state, ownProps) {
     project: {
       ...project,
       ...{
-        sprints: project.sprints.map(id => {
+        sprints: project.sprints ? project.sprints.map(id => {
           return {
             ...{ id },
             ...state.sprints[id]
           }
-        })
+        }) : []
       }
     }
   }

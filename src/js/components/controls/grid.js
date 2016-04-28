@@ -13,7 +13,7 @@ export default class Grid extends Component {
               return <th key={index}>{column.caption}</th>;
             })}
           </tr>
-          {rows.length && rows.map((row, index) => {
+          {rows.map((row, index) => {
             return (
               <tr key={index}>
                 {columns.map((column, index) => {
