@@ -35,19 +35,3 @@ export default class Grid extends Component {
     );
   }
 }
-
-/*rows.length && rows.map((row, index) => {
-  return (
-    <tr key={index}>
-      <td>
-        <NavLink to={`${row.id}`}><div>{row.id}</div></NavLink>
-      </td>
-      <td>
-        {row.name}
-      </td>
-      <td>
-        {row.creator}
-      </td>
-    </tr>
-    );
-  })*/
