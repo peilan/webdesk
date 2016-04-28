@@ -18,6 +18,7 @@ import NewsList from './components/newsList'
 import SprintList from './containers/sprintList'
 import TicketList from './components/ticketList'
 import SprintForm from './containers/sprintForm.js'
+import TicketForm from './containers/ticketForm.js'
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -34,7 +35,10 @@ render(
               <Route name="Новости" path="news" component={NewsList}/>
               <Route name="Спринты" path="sprints" component={Vertex}>
                 <IndexRoute component={SprintList}/>
-                <Route name="Спринт" path=":sprintId" component={SprintForm}/>
+                <Route name="Спринт" path=":sprintId" component={Vertex}>
+                  <IndexRoute component={SprintForm}/>
+                  <Route name="Заявка" path=":ticketId" component={TicketForm}/>
+                </Route>
               </Route>
               <Route name="Заявки" path="tickets" component={TicketList}/>
             </Route>

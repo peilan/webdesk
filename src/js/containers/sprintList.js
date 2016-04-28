@@ -22,9 +22,11 @@ export default class SprintList extends Component {
       <div>
         <h3>Спринты</h3>
         <div>Спринты проекта {project.name}</div>
-          {project.sprints.length ? (
-            <Grid columns={columns} rows={project.sprints}/>
-          ) : <Spinner/>}
+        <br/>
+        {project.sprints.length ? (
+          <Grid columns={columns} rows={project.sprints}/>
+          ) : <Spinner/>
+        }
       </div>
     );
   }

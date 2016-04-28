@@ -16,7 +16,6 @@ export default class ProjectForm extends Component {
     return (
       <div>
         <h3>Форма проекта</h3>
-        <br/>
         {project.sprints ? (
           <div>
             <div>Проект {project.name}</div>
