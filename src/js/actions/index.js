@@ -1,6 +1,7 @@
 import {
   LOAD_PROJECTS_START,
-  LOAD_PROJECTS_SUCCESS
+  LOAD_PROJECTS_SUCCESS,
+  LOAD_SPRINTS_SUCCESS
 } from '../constants'
 
 export function loadProjects() {
@@ -16,20 +17,40 @@ export function loadProjects() {
     })
 
     setTimeout(() => {
-      dispatch({
-        type: LOAD_PROJECTS_SUCCESS,
-        payload: {
-          1: {
-            name: 'fisrt project'
+      const data = {
+        entities: {
+          projects: {
+            1: {
+              name: 'fisrt project'
+            },
+            2: {
+              name: 'project 42'
+            },
+            3: {
+              name: 'simple project'
+            }
           },
-          2: {
-            name: 'project 42'
-          },
-          3: {
-            name: 'simple project'
+          sprints: {
+            1: {
+              name: 'Спринт 1-1'
+            },
+            2: {
+              name: 'Спринт 1-2'
+            },
+            3: {
+              name: 'Спринт 1-3'
+            }
           }
         }
-      })
+      };
+      dispatch({
+        type: LOAD_PROJECTS_SUCCESS,
+        payload: data.entities.projects
+      });
+      dispatch({
+        type: LOAD_SPRINTS_SUCCESS,
+        payload: data.entities.sprints
+      });
     }, 2000)
   }
 }
