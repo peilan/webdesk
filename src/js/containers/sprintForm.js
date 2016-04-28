@@ -5,25 +5,25 @@ import * as actions from '../actions'
 
 class SprintForm extends Component {
   componentWillMount() {
-    
+    this.props.actions.loadSprint(this.props.params.sprintId);
   }
 
   onToggleTicket() {
-
+    this.toggleTicket(this.id);
   }
 
   render() {
     const { name, tickets } = this.props.sprint;
-    const total = 10;
+    const { toggleTicket } = this.props.actions;
 
     return (
       <div>
         <h3>Форма спринта</h3>
-        <div>Заявки спринта {this.props.params.sprintId} ({name})</div>
+        <div>Заявки спринта {name}</div>
         <table className="grid">
           <tbody>
             <tr>
-              <th>Название 5</th><th>Оценка</th><th>Взять</th>
+              <th>Название</th><th>Оценка</th><th>Взять</th>
             </tr>
             {tickets && tickets.map((ticket, index) => {
               return (
@@ -36,14 +36,24 @@ class SprintForm extends Component {
                   </td>
                   <td>
                     <input type="checkbox"
-                      onChange={this.onToggleTicket.bind(this)}
+                      onChange={this.onToggleTicket.bind({
+                        toggleTicket,
+                        id: ticket.id
+                      })}
                       checked={ticket.active}/>
                   </td>
                 </tr>
                 );
               })}
             <tr>
-              <td><b>Total</b></td><td>{total}</td><td></td>
+              <td><b>Сумма</b></td>
+              <td>
+                {tickets.reduce((x, y) => {
+                  const op = y.active ? y.mark : 0;
+                  return x + op || 0;
+                }, 0)}
+              </td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -52,9 +62,18 @@ class SprintForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+  const sprint = state.sprints[ownProps.params.sprintId] || {};
   return {
-    sprint: state.sprint || {}
+    sprint: {
+      ...sprint,
+      tickets: sprint.tickets ? sprint.tickets.map(id => {
+        return {
+          ...{ id },
+          ...state.tickets[id]
+        }
+      }) : []
+    }
   }
 }
 
