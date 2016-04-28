@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import Grid from '../components/controls/grid'
+import Spinner from '../components/controls/spinner'
 
 class ProjectList extends Component {
   componentWillMount() {
@@ -20,7 +21,9 @@ class ProjectList extends Component {
     return (
       <div>
         <h3>Реестр проектов</h3>
-        <Grid columns={columns} rows={projects}/>
+        {projects.length ? (
+          <Grid columns={columns} rows={projects}/>
+        ) : <Spinner/>}
       </div>
     );
   }
@@ -28,7 +31,9 @@ class ProjectList extends Component {
 
 function mapStateToProps(state) {
   return {
-    projects: state.projects
+    projects: Object.keys(state.projects).map((id) => {
+      return { ...state.projects[id], ...{ id } };
+    })
   }
 }
 

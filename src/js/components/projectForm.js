@@ -18,7 +18,6 @@ export default class ProjectForm extends Component {
             <NavLink to="./tickets">Заявки</NavLink>
           </li>
         </ul>
-        {this.props.children}
       </div>
     );
   }

@@ -5,9 +5,9 @@ import {
 
 export function loadProjects() {
   return (dispatch, getState) => {
-    const state = getState()
+    const { projects } = getState()
 
-    if (state.projects.length) {
+    if (projects.length) {
       return
     }
 
@@ -17,7 +17,18 @@ export function loadProjects() {
 
     setTimeout(() => {
       dispatch({
-        type: LOAD_PROJECTS_SUCCESS
+        type: LOAD_PROJECTS_SUCCESS,
+        payload: {
+          1: {
+            name: 'fisrt project'
+          },
+          2: {
+            name: 'project 42'
+          },
+          3: {
+            name: 'simple project'
+          }
+        }
       })
     }, 2000)
   }

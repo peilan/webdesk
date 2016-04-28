@@ -3,7 +3,7 @@ import NavLink from './controls/navlink'
 
 export default class SprintList extends Component {
   render() {
-    return this.props.children ? this.props.children : (
+    return (
       <div>
         <h3>Спринты</h3>
         <div>Спринты проекта {this.props.params.projectId}</div>
