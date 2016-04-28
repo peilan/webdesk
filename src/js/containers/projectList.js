@@ -16,7 +16,7 @@ class ProjectList extends Component {
   render() {
     const { projects } = this.props;
 
-    return this.props.children ? this.props.children : (
+    return (
       <div>
         <h3>Реестр проектов</h3>
           <table className="grid">

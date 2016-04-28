@@ -3,7 +3,7 @@ import NavLink from './controls/navlink'
 
 export default class ProjectForm extends Component {
   render() {
-    return this.props.children ? this.props.children : (
+    return (
       <div>
         <h3>Форма проекта</h3>
         <div>Проект {this.props.params.projectId}</div>
