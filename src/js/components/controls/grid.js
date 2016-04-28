@@ -4,6 +4,7 @@ import NavLink from './navlink'
 export default class Grid extends Component {
   render() {
     const { rows, columns, isActiveRow, showFooter } = this.props;
+    const getClassName = row => isActiveRow ? isActiveRow(row) : '';
 
     return (
       <table className="grid">
@@ -15,7 +16,7 @@ export default class Grid extends Component {
           </tr>
           {rows.map((row, index) => {
             return (
-              <tr key={index} className={isActiveRow(row) ? 'active' : ''}>
+              <tr key={index} className={getClassName(row) ? 'active' : ''}>
                 {columns.map((column, index) => {
                   const value = row[column.field];
                   let cell = <div>{value}</div>;
@@ -50,7 +51,7 @@ export default class Grid extends Component {
                   </td>);
               })}
             </tr>
-          ) : ''}
+          ) : <tr></tr>}
         </tbody>
       </table>
     );
