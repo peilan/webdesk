@@ -3,7 +3,7 @@ import NavLink from './navlink'
 
 export default class Grid extends Component {
   render() {
-    const { rows, columns } = this.props;
+    const { rows, columns, isActiveRow, showFooter } = this.props;
 
     return (
       <table className="grid">
@@ -15,14 +15,25 @@ export default class Grid extends Component {
           </tr>
           {rows.map((row, index) => {
             return (
-              <tr key={index}>
+              <tr key={index} className={isActiveRow(row) ? 'active' : ''}>
                 {columns.map((column, index) => {
                   const value = row[column.field];
                   let cell = <div>{value}</div>;
                   let content = cell;
 
                   if (column.type === 'link') {
-                    content = <NavLink to={`./${value}`}>{cell}</NavLink>;
+                    const base = column.base || './';
+                    content = <NavLink to={`${base}${value}`}>{cell}</NavLink>;
+                  }
+                  else if (column.type === 'checkbox') {
+                    content = (
+                      <input type="checkbox"
+                        onChange={() => {
+                          column.onCheck(row.id);
+                        }}
+                        checked={value}
+                      />
+                    );
                   }
 
                   return <td key={index}>{content}</td>;
@@ -30,6 +41,16 @@ export default class Grid extends Component {
               </tr>
             );
           })}
+          {showFooter ? (
+            <tr>
+              {columns.map((column, index) => {
+                return (
+                  <td key={index}>
+                    {column.getFooterText ? column.getFooterText() : ''}
+                  </td>);
+              })}
+            </tr>
+          ) : ''}
         </tbody>
       </table>
     );

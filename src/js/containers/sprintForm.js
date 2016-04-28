@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
+import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
 
 class SprintForm extends Component {
@@ -9,13 +10,27 @@ class SprintForm extends Component {
     this.props.actions.loadSprint(this.props.params.sprintId);
   }
 
-  onToggleTicket() {
-    this.toggleTicket(this.id);
+  toggleTicket(id) {
+    this.props.actions.toggleTicket(id);
   }
 
   render() {
     const { name, tickets } = this.props.sprint;
-    const { toggleTicket } = this.props.actions;
+    const columns = [
+      { caption: 'Id', field: 'id', type: 'link', base: '../tickets/' },
+      { caption: 'Название', field: 'name',
+        getFooterText: () => 'Сумма'
+      },
+      { caption: 'Оценка', field: 'mark' },
+      { caption: 'Взять', field: 'active', type: 'checkbox',
+        onCheck: this.toggleTicket.bind(this),
+        getFooterText: () => tickets.reduce((x, y) => {
+          const op = y.active ? y.mark : 0;
+          return x + op || 0;
+        }, 0)
+      },
+      { caption: 'Создатель', field: 'user' }
+    ];
 
     return (
       <div>
@@ -23,43 +38,13 @@ class SprintForm extends Component {
         {tickets.length ? (
           <div>
             <div>Заявки спринта {name}</div>
-            <table className="grid">
-              <tbody>
-                <tr>
-                  <th>Название</th><th>Оценка</th><th>Взять</th>
-                </tr>
-                {tickets.map((ticket, index) => {
-                  return (
-                    <tr key={index} className={ticket.active ? 'active' : ''}>
-                      <td>
-                        {ticket.name}
-                      </td>
-                      <td>
-                        {ticket.mark}
-                      </td>
-                      <td>
-                        <input type="checkbox"
-                          onChange={this.onToggleTicket.bind({
-                            toggleTicket,
-                            id: ticket.id
-                          })}
-                          checked={ticket.active}/>
-                      </td>
-                    </tr>
-                    );
-                  })}
-                <tr>
-                  <td><b>Сумма</b></td>
-                  <td>
-                    {tickets.reduce((x, y) => {
-                      const op = y.active ? y.mark : 0;
-                      return x + op || 0;
-                    }, 0)}
-                  </td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <br/>
+            <Grid
+              columns={columns}
+              rows={tickets}
+              showFooter={true}
+              isActiveRow={ticket => ticket.active}
+            />
           </div>
         ) : <Spinner/>}
       </div>
