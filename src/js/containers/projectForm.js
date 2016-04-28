@@ -39,7 +39,7 @@ export default class ProjectForm extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    project: state.projects[ownProps.params.projectId]
+    project: state.projects[ownProps.params.projectId] || {}
   }
 }
 
