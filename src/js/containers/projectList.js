@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
-import NavLink from '../components/controls/navlink'
+import Grid from '../components/controls/grid'
 
 class ProjectList extends Component {
   componentWillMount() {
@@ -15,32 +15,16 @@ class ProjectList extends Component {
 
   render() {
     const { projects } = this.props;
+    const columns = [
+      { caption: 'Id', field: 'id', type: 'link' },
+      { caption: 'Название', field: 'name' },
+      { caption: 'Создатель', field: 'user' }
+    ]
 
     return (
       <div>
         <h3>Реестр проектов</h3>
-          <table className="grid">
-            <tbody>
-              <tr>
-                <th>Id</th><th>Название</th><th>Создатель</th>
-              </tr>
-              {projects.length && projects.map((project, index) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      <NavLink to={`${project.id}`}>{project.id}</NavLink>
-                    </td>
-                    <td>
-                      {project.name}
-                    </td>
-                    <td>
-                      {project.creator}
-                    </td>
-                  </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+        <Grid columns={columns} rows={projects}/>
       </div>
     );
   }
