@@ -15,7 +15,7 @@ export default class TicketForm extends Component {
     return (
       <div>
         <h3>Форма заявки</h3>
-        {ticket ? (
+        {Object.keys(ticket).length ? (
           <div>
             <div>Заявка {ticket.title}</div>
           </div>
