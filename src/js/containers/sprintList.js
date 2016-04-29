@@ -23,7 +23,7 @@ export default class SprintList extends Component {
         <h3>Спринты</h3>
         <div>Спринты проекта {project.title}</div>
         <br/>
-        {project.sprints.length ? (
+        {(Object.keys(project).length > 1) ? (
           <Grid columns={columns} rows={project.sprints}/>
           ) : <Spinner/>
         }

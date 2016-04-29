@@ -11,11 +11,11 @@ import {
 
 const API_ROOT = 'http://localhost:3500/data'
 
-export function loadProjects() {
+export function loadProjects(force) {
   return (dispatch, getState) => {
     const { projects } = getState()
 
-    if (Object.keys(projects).length) {
+    if (Object.keys(projects).length && !force) {
       return
     }
 

@@ -38,7 +38,7 @@ class SprintForm extends Component {
     return (
       <div>
         <h3>Форма спринта</h3>
-        {tickets.length ? (
+        {(Object.keys(this.props.sprint).length > 1) ? (
           <div>
             <div>Заявки спринта {title}</div>
             <br/>
