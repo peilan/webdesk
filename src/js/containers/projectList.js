@@ -14,7 +14,7 @@ class ProjectList extends Component {
     const { projects } = this.props;
     const columns = [
       { caption: 'Id', field: 'id', type: 'link' },
-      { caption: 'Название', field: 'name' },
+      { caption: 'Название', field: 'title' },
       { caption: 'Создатель', field: 'user' }
     ]
 

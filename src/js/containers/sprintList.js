@@ -14,14 +14,14 @@ export default class SprintList extends Component {
     const { project } = this.props;
     const columns = [
       { caption: 'Id', field: 'id', type: 'link' },
-      { caption: 'Название', field: 'name' },
+      { caption: 'Название', field: 'title' },
       { caption: 'Создатель', field: 'user' }
     ]
 
     return (
       <div>
         <h3>Спринты</h3>
-        <div>Спринты проекта {project.name}</div>
+        <div>Спринты проекта {project.title}</div>
         <br/>
         {project.sprints.length ? (
           <Grid columns={columns} rows={project.sprints}/>

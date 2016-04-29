@@ -18,7 +18,7 @@ export default class ProjectForm extends Component {
         <h3>Форма проекта</h3>
         {project.sprints ? (
           <div>
-            <div>Проект {project.name}</div>
+            <div>Проект {project.title}</div>
             <ul>
               <li>
                 <NavLink to="./news">Новости</NavLink>

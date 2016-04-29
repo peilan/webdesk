@@ -6,7 +6,7 @@ import Spinner from '../components/controls/spinner'
 
 export default class TicketForm extends Component {
   componentWillMount() {
-    //this.props.actions.loadTicket(this.props.params.ticketId);
+    this.props.actions.loadTicket(this.props.params.ticketId);
   }
 
   render() {
@@ -17,7 +17,7 @@ export default class TicketForm extends Component {
         <h3>Форма заявки</h3>
         {ticket ? (
           <div>
-            <div>Заявка {ticket.name}</div>
+            <div>Заявка {ticket.title}</div>
           </div>
         ) : <Spinner/>}
       </div>

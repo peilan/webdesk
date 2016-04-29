@@ -15,7 +15,7 @@ class SprintForm extends Component {
   }
 
   render() {
-    const { name, tickets } = this.props.sprint;
+    const { title, tickets } = this.props.sprint;
     const columns = [
       { caption: 'Id', field: 'id', type: 'link', base: './tickets/' },
       { caption: 'Название', field: 'title',
@@ -37,7 +37,7 @@ class SprintForm extends Component {
         <h3>Форма спринта</h3>
         {tickets.length ? (
           <div>
-            <div>Заявки спринта {name}</div>
+            <div>Заявки спринта {title}</div>
             <br/>
             <Grid
               columns={columns}
