@@ -47,7 +47,7 @@ export default class Grid extends Component {
               {columns.map((column, index) => {
                 return (
                   <td key={index}>
-                    {column.getFooterText ? column.getFooterText() : ''}
+                    <b>{column.getFooterText ? column.getFooterText() : ''}</b>
                   </td>);
               })}
             </tr>
