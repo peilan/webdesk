@@ -6,6 +6,7 @@ import Spinner from '../components/controls/spinner'
 import Label from '../components/controls/label'
 import TextBox from '../components/controls/textBox'
 import CheckBox from '../components/controls/checkBox'
+import Memo from '../components/controls/memo'
 
 export default class TicketForm extends Component {
   componentWillMount() {
@@ -37,6 +38,10 @@ export default class TicketForm extends Component {
             <br/>
             <Label value="Взять"/>
             <CheckBox source={ticket} field="taken" onChange={this.fieldChanged.bind(this)}/>
+            <br/>
+            <Label value="Описание"/>
+            <br/>
+            <Memo source={ticket} field="description" onChange={this.fieldChanged.bind(this)}/>
           </div>
         ) : <Spinner/>}
       </div>

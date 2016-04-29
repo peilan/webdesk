@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 
-export default class TextBox extends Component {
+export default class Memo extends Component {
   onChange(e) {
     const value = e.target.value;
     const { field } = this.props;
@@ -11,18 +11,18 @@ export default class TextBox extends Component {
     const { source, field, readOnly } = this.props;
 
     return (
-      <input
-        className="textBox"
-        type="text"
+      <textarea
         value={source[field]}
         onChange={this.onChange.bind(this)}
         readOnly={readOnly}
+        rows="10"
+        cols="45"
       />
     );
   }
 }
 
-TextBox.propTypes = {
+Memo.propTypes = {
   source: PropTypes.object,
   field: PropTypes.string,
   onChange: PropTypes.func

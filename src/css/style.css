@@ -25,13 +25,21 @@ table.grid tr.active {
 }
 
 table.grid td, table.grid th {
-  width: 100px;
+  min-width: 75px;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .label {
   display: inline-block;
   width: 75px;
   padding: 3px;
+}
+
+.textBox {
+  width: 300px;
 }
 
 body {

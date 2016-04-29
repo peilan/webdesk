@@ -1,3 +1,4 @@
+import 'isomorphic-fetch'
 import {
   LOAD_PROJECTS_START,
   LOAD_PROJECTS_SUCCESS,
@@ -7,6 +8,8 @@ import {
   LOAD_TICKETS_SUCCESS,
   CHANGE_TICKET
 } from '../constants'
+
+const API_ROOT = 'http://localhost:3500/data'
 
 export function loadProjects() {
   return (dispatch, getState) => {
@@ -20,27 +23,14 @@ export function loadProjects() {
       type: LOAD_PROJECTS_START
     })
 
-    setTimeout(() => {
-      const data = {
-        entities: {
-          projects: {
-            1: {
-              title: 'fisrt project'
-            },
-            2: {
-              title: 'project 42'
-            },
-            3: {
-              title: 'simple project'
-            }
-          }
-        }
-      };
-      dispatch({
-        type: LOAD_PROJECTS_SUCCESS,
-        payload: data.entities.projects
-      });
-    }, 2000)
+    fetch(`${API_ROOT}/load/projects`).then(response => {
+      response.json().then(data => {
+        dispatch({
+          type: LOAD_PROJECTS_SUCCESS,
+          payload: data.entities.projects
+        });
+      })
+    });
   }
 }
 
@@ -56,37 +46,18 @@ export function loadProject(id) {
       type: LOAD_PROJECTS_START
     })
 
-    setTimeout(() => {
-      const data = {
-        entities: {
-          projects: {
-            [id]: {
-              title: 'some project',
-              sprints: [1, 2, 3]
-            }
-          },
-          sprints: {
-            1: {
-              title: 'Спринт 1-1'
-            },
-            2: {
-              title: 'Спринт 1-2'
-            },
-            3: {
-              title: 'Спринт 1-3'
-            }
-          }
-        }
-      };
-      dispatch({
-        type: LOAD_PROJECTS_SUCCESS,
-        payload: data.entities.projects
+    fetch(`${API_ROOT}/load/project/${id}`).then(response => {
+      response.json().then(data => {
+        dispatch({
+          type: LOAD_PROJECTS_SUCCESS,
+          payload: data.entities.projects
+        });
+        dispatch({
+          type: LOAD_SPRINTS_SUCCESS,
+          payload: data.entities.sprints
+        });
       });
-      dispatch({
-        type: LOAD_SPRINTS_SUCCESS,
-        payload: data.entities.sprints
-      });
-    }, 2000)
+    });
   }
 }
 
@@ -102,48 +73,18 @@ export function loadSprint(id) {
       type: LOAD_SPRINTS_START
     })
 
-    setTimeout(() => {
-      const data = {
-        entities: {
-          sprints: {
-            [id]: {
-              title: 'some sprint',
-              tickets: [1, 2, 3, 4]
-            }
-          },
-          tickets: {
-            1: {
-              title: 'first ticket',
-              rating: 5,
-              taken: true
-            },
-            2: {
-              title: 'easy ticket',
-              rating: 1,
-              taken: false
-            },
-            3: {
-              title: 'tacket',
-              rating: 3,
-              taken: true
-            },
-            4: {
-              title: 'test ticket',
-              rating: 2,
-              taken: false
-            }
-          }
-        }
-      };
-      dispatch({
-        type: LOAD_SPRINTS_SUCCESS,
-        payload: data.entities.sprints
-      });
-      dispatch({
-        type: LOAD_TICKETS_SUCCESS,
-        payload: data.entities.tickets
-      });
-    }, 2000)
+    fetch(`${API_ROOT}/load/sprint/${id}`).then(response => {
+      response.json().then(data => {
+        dispatch({
+          type: LOAD_SPRINTS_SUCCESS,
+          payload: data.entities.sprints
+        });
+        dispatch({
+          type: LOAD_TICKETS_SUCCESS,
+          payload: data.entities.tickets
+        });
+      })
+    });
   }
 }
 
@@ -159,24 +100,14 @@ export function loadTicket(id) {
       type: LOAD_TICKETS_START
     })
 
-    setTimeout(() => {
-      const data = {
-        entities: {
-          tickets: {
-            [id]: {
-              title: 'some ticket',
-              rating: 5,
-              taken: true,
-              description: 'ticket description'
-            }
-          }
-        }
-      };
-      dispatch({
-        type: LOAD_TICKETS_SUCCESS,
-        payload: data.entities.tickets
-      });
-    }, 2000)
+    fetch(`${API_ROOT}/load/ticket/${id}`).then(response => {
+      response.json().then(data => {
+        dispatch({
+          type: LOAD_TICKETS_SUCCESS,
+          payload: data.entities.tickets
+        });
+      })
+    });
   }
 }
 
