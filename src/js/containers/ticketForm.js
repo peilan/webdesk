@@ -12,6 +12,12 @@ export default class TicketForm extends Component {
     this.props.actions.loadTicket(this.props.params.ticketId);
   }
 
+  fieldChanged(field, value) {
+    this.props.actions.changeTicket(this.props.params.ticketId, {
+      [field]: value
+    });
+  }
+
   render() {
     const { ticket } = this.props;
 
@@ -20,13 +26,17 @@ export default class TicketForm extends Component {
         <h3>Форма заявки</h3>
         {Object.keys(ticket).length ? (
           <div>
-            <Label value="Id"/><TextBox value={ticket.id} readOnly={true}/>
+            <Label value="Id"/>
+            <TextBox source={ticket} field="id" readOnly={true}/>
             <br/>
-            <Label value="Название"/><TextBox value={ticket.title}/>
+            <Label value="Название"/>
+            <TextBox source={ticket} field="title" onChange={this.fieldChanged.bind(this)}/>
             <br/>
-            <Label value="Оценка"/><TextBox value={ticket.raiting}/>
+            <Label value="Оценка"/>
+            <TextBox source={ticket} field="rating" onChange={this.fieldChanged.bind(this)}/>
             <br/>
-            <Label value="Взять"/><CheckBox value={ticket.taken}/>
+            <Label value="Взять"/>
+            <CheckBox source={ticket} field="taken" onChange={this.fieldChanged.bind(this)}/>
           </div>
         ) : <Spinner/>}
       </div>

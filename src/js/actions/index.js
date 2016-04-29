@@ -5,7 +5,8 @@ import {
   LOAD_SPRINTS_SUCCESS,
   LOAD_TICKETS_START,
   LOAD_TICKETS_SUCCESS,
-  TOGGLE_TICKET
+  TOGGLE_TICKET,
+  CHANGE_TICKET
 } from '../constants'
 
 export function loadProjects() {
@@ -114,22 +115,22 @@ export function loadSprint(id) {
           tickets: {
             1: {
               title: 'first ticket',
-              raiting: 5,
+              rating: 5,
               taken: true
             },
             2: {
               title: 'easy ticket',
-              raiting: 1,
+              rating: 1,
               taken: false
             },
             3: {
               title: 'tacket',
-              raiting: 3,
+              rating: 3,
               taken: true
             },
             4: {
               title: 'test ticket',
-              raiting: 2,
+              rating: 2,
               taken: false
             }
           }
@@ -165,7 +166,7 @@ export function loadTicket(id) {
           tickets: {
             [id]: {
               title: 'some ticket',
-              raiting: 5,
+              rating: 5,
               taken: true,
               description: 'ticket description'
             }
@@ -184,5 +185,15 @@ export function toggleTicket(id) {
   return {
     type: TOGGLE_TICKET,
     payload: id
+  }
+}
+
+export function changeTicket(id, data) {
+  return {
+    type: CHANGE_TICKET,
+    payload: {
+      id,
+      data
+    }
   }
 }

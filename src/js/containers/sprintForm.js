@@ -21,13 +21,14 @@ class SprintForm extends Component {
       { caption: 'Название', field: 'title',
         getFooterText: () => 'Сумма'
       },
-      { caption: 'Оценка', field: 'raiting' },
-      { caption: 'Взять', field: 'taken', type: 'checkbox',
-        onCheck: this.toggleTicket.bind(this),
+      { caption: 'Оценка', field: 'rating',
         getFooterText: () => tickets.reduce((x, y) => {
-          const op = y.taken ? y.raiting : 0;
+          const op = y.taken ? y.rating : 0;
           return x + op || 0;
         }, 0)
+      },
+      { caption: 'Взять', field: 'taken', type: 'checkbox',
+        onCheck: this.toggleTicket.bind(this)
       },
       { caption: 'Создатель', field: 'user' }
     ];
