@@ -25,7 +25,7 @@ class SprintForm extends Component {
       },
       { caption: 'Оценка', field: 'rating',
         getFooterText: () => tickets.reduce((x, y) => {
-          const op = y.taken ? y.rating : 0;
+          const op = y.taken ? parseFloat(y.rating, 10) : 0;
           return x + op || 0;
         }, 0)
       },
