@@ -37,7 +37,7 @@ render(
                 <IndexRoute component={SprintList}/>
                 <Route name="Спринт" path=":sprintId" component={Vertex}>
                   <IndexRoute component={SprintForm}/>
-                  <Route name="Заявка" path=":ticketId" component={TicketForm}/>
+                  <Route name="Заявка" path="tickets/:ticketId" component={TicketForm}/>
                 </Route>
               </Route>
               <Route name="Заявки" path="tickets" component={TicketList}/>

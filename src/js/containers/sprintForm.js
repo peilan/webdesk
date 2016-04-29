@@ -17,7 +17,7 @@ class SprintForm extends Component {
   render() {
     const { name, tickets } = this.props.sprint;
     const columns = [
-      { caption: 'Id', field: 'id', type: 'link' },
+      { caption: 'Id', field: 'id', type: 'link', base: './tickets/' },
       { caption: 'Название', field: 'name',
         getFooterText: () => 'Сумма'
       },
