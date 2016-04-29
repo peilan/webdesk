@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         [action.payload]: {
           ...state[action.payload],
           ...{
-            active: !state[action.payload].active
+            taken: !state[action.payload].taken
           }
         }
       }};

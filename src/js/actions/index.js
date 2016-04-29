@@ -3,6 +3,7 @@ import {
   LOAD_PROJECTS_SUCCESS,
   LOAD_SPRINTS_START,
   LOAD_SPRINTS_SUCCESS,
+  LOAD_TICKETS_START,
   LOAD_TICKETS_SUCCESS,
   TOGGLE_TICKET
 } from '../constants'
@@ -112,24 +113,24 @@ export function loadSprint(id) {
           },
           tickets: {
             1: {
-              name: 'first ticket',
-              mark: 5,
-              active: true
+              title: 'first ticket',
+              raiting: 5,
+              taken: true
             },
             2: {
-              name: 'easy ticket',
-              mark: 1,
-              active: false
+              title: 'easy ticket',
+              raiting: 1,
+              taken: false
             },
             3: {
-              name: 'tacket',
-              mark: 3,
-              active: true
+              title: 'tacket',
+              raiting: 3,
+              taken: true
             },
             4: {
-              name: 'test ticket',
-              mark: 2,
-              active: false
+              title: 'test ticket',
+              raiting: 2,
+              taken: false
             }
           }
         }
@@ -138,6 +139,39 @@ export function loadSprint(id) {
         type: LOAD_SPRINTS_SUCCESS,
         payload: data.entities.sprints
       });
+      dispatch({
+        type: LOAD_TICKETS_SUCCESS,
+        payload: data.entities.tickets
+      });
+    }, 2000)
+  }
+}
+
+export function loadTicket(id) {
+  return (dispatch, getState) => {
+    const { sprints } = getState()
+
+    if (sprints[id] && sprints[id].tickets) {
+      return
+    }
+
+    dispatch({
+      type: LOAD_TICKETS_START
+    })
+
+    setTimeout(() => {
+      const data = {
+        entities: {
+          tickets: {
+            [id]: {
+              title: 'some ticket',
+              raiting: 5,
+              taken: true,
+              description: 'ticket description'
+            }
+          }
+        }
+      };
       dispatch({
         type: LOAD_TICKETS_SUCCESS,
         payload: data.entities.tickets

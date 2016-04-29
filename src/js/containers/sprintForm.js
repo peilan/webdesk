@@ -18,14 +18,14 @@ class SprintForm extends Component {
     const { name, tickets } = this.props.sprint;
     const columns = [
       { caption: 'Id', field: 'id', type: 'link', base: './tickets/' },
-      { caption: 'Название', field: 'name',
+      { caption: 'Название', field: 'title',
         getFooterText: () => 'Сумма'
       },
-      { caption: 'Оценка', field: 'mark' },
-      { caption: 'Взять', field: 'active', type: 'checkbox',
+      { caption: 'Оценка', field: 'raiting' },
+      { caption: 'Взять', field: 'taken', type: 'checkbox',
         onCheck: this.toggleTicket.bind(this),
         getFooterText: () => tickets.reduce((x, y) => {
-          const op = y.active ? y.mark : 0;
+          const op = y.taken ? y.raiting : 0;
           return x + op || 0;
         }, 0)
       },
@@ -43,7 +43,7 @@ class SprintForm extends Component {
               columns={columns}
               rows={tickets}
               showFooter={true}
-              isActiveRow={ticket => ticket.active}
+              isActiveRow={ticket => ticket.taken}
             />
           </div>
         ) : <Spinner/>}
