@@ -16,18 +16,24 @@ ul.horizontal-menu li {
 }
 
 table.grid, table.grid td, table.grid th {
-    border: 1px solid #aaa;
-    border-collapse: collapse;
+  border: 1px solid #aaa;
+  border-collapse: collapse;
 }
 
 table.grid tr.active {
-    background-color: #35cc00
+  background-color: #35cc00
 }
 
 table.grid td, table.grid th {
-    width: 100px;
+  width: 100px;
+}
+
+.label {
+  display: inline-block;
+  width: 75px;
+  padding: 3px;
 }
 
 body {
-    background-color: #eee;
+  background-color: #eee;
 }

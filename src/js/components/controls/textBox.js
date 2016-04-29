@@ -7,10 +7,15 @@ export default class TextBox extends Component {
   }
 
   render() {
-    const { value } = this.props;
+    const { value, readOnly } = this.props;
 
     return (
-      <input type="text" value={value} onChange={this.onChange.bind(this)}/>
+      <input
+        type="text"
+        value={value}
+        onChange={this.onChange.bind(this)}
+        readOnly={readOnly}
+      />
     );
   }
 }
