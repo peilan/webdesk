@@ -10,8 +10,10 @@ class SprintForm extends Component {
     this.props.actions.loadSprint(this.props.params.sprintId);
   }
 
-  toggleTicket(id) {
-    this.props.actions.toggleTicket(id);
+  changeTicket(id, value) {
+    this.props.actions.changeTicket(id, {
+      taken: value
+    });
   }
 
   render() {
@@ -28,7 +30,7 @@ class SprintForm extends Component {
         }, 0)
       },
       { caption: 'Взять', field: 'taken', type: 'checkbox',
-        onCheck: this.toggleTicket.bind(this)
+        onCheck: this.changeTicket.bind(this)
       },
       { caption: 'Создатель', field: 'user' }
     ];

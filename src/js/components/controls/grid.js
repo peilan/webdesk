@@ -29,8 +29,9 @@ export default class Grid extends Component {
                   else if (column.type === 'checkbox') {
                     content = (
                       <input type="checkbox"
-                        onChange={() => {
-                          column.onCheck(row.id);
+                        onChange={(e) => {
+                          const checked = e.target.checked;
+                          column.onCheck(row.id, checked);
                         }}
                         checked={value}
                       />

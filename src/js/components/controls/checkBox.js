@@ -13,7 +13,7 @@ export default class CheckBox extends Component {
     return (
       <input
         type="checkbox"
-        value={source[field]}
+        checked={source[field]}
         onChange={this.onChange.bind(this)}
       />
     );

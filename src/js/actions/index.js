@@ -5,7 +5,6 @@ import {
   LOAD_SPRINTS_SUCCESS,
   LOAD_TICKETS_START,
   LOAD_TICKETS_SUCCESS,
-  TOGGLE_TICKET,
   CHANGE_TICKET
 } from '../constants'
 
@@ -178,13 +177,6 @@ export function loadTicket(id) {
         payload: data.entities.tickets
       });
     }, 2000)
-  }
-}
-
-export function toggleTicket(id) {
-  return {
-    type: TOGGLE_TICKET,
-    payload: id
   }
 }
 
