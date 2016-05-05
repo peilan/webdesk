@@ -9,8 +9,8 @@ import CheckBox from '../components/controls/checkBox'
 import Memo from '../components/controls/memo'
 
 export default class TicketForm extends Component {
-  componentWillMount() {
-    this.props.actions.loadTicket(this.props.params.ticketId);
+  componentDidMount() {
+    this.props.actions.loadTicket(this.props.params);
   }
 
   fieldChanged(field, value) {

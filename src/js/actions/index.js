@@ -30,11 +30,11 @@ export function loadProjects(params, force) {
   }
 }
 
-export function loadProject(id) {
+export function loadProject({ projectId }) {
   return (dispatch, getState) => {
     const { projects } = getState()
 
-    if (projects[id] && projects[id].sprints) {
+    if (projects[projectId] && projects[projectId].sprints) {
       return
     }
 
@@ -42,7 +42,7 @@ export function loadProject(id) {
       type: LOAD_PROJECTS_START
     })
 
-    return dataAPI.fetchProject(id).then(data => {
+    return dataAPI.fetchProject(projectId).then(data => {
       dispatch({
         type: LOAD_PROJECTS_SUCCESS,
         payload: data.entities.projects
@@ -55,11 +55,11 @@ export function loadProject(id) {
   }
 }
 
-export function loadSprint(id) {
+export function loadSprint({ sprintId }) {
   return (dispatch, getState) => {
     const { sprints } = getState()
 
-    if (sprints[id] && sprints[id].tickets) {
+    if (sprints[sprintId] && sprints[sprintId].tickets) {
       return
     }
 
@@ -67,7 +67,7 @@ export function loadSprint(id) {
       type: LOAD_SPRINTS_START
     })
 
-    return dataAPI.fetchSprint(id).then(data => {
+    return dataAPI.fetchSprint(sprintId).then(data => {
       dispatch({
         type: LOAD_SPRINTS_SUCCESS,
         payload: data.entities.sprints
@@ -80,11 +80,11 @@ export function loadSprint(id) {
   }
 }
 
-export function loadTicket(id) {
+export function loadTicket({ ticketId }) {
   return (dispatch, getState) => {
     const { tickets } = getState()
 
-    if (tickets[id]) {
+    if (tickets[ticketId]) {
       return
     }
 
@@ -92,7 +92,7 @@ export function loadTicket(id) {
       type: LOAD_TICKETS_START
     })
 
-    return dataAPI.fetchTicket(id).then(data => {
+    return dataAPI.fetchTicket(ticketId).then(data => {
       dispatch({
         type: LOAD_TICKETS_SUCCESS,
         payload: data.entities.tickets

@@ -7,7 +7,7 @@ import Spinner from '../components/controls/spinner'
 import Button from '../components/controls/button'
 
 class ProjectList extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.loadProjects();
   }
 

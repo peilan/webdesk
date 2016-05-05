@@ -6,8 +6,8 @@ import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
 
 export default class SprintList extends Component {
-  componentWillMount() {
-    this.props.actions.loadProject(this.props.params.projectId);
+  componentDidMount() {
+    this.props.actions.loadProject(this.props.params);
   }
 
   render() {

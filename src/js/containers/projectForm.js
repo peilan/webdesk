@@ -6,8 +6,8 @@ import NavLink from '../components/controls/navlink'
 import Spinner from '../components/controls/spinner'
 
 export default class ProjectForm extends Component {
-  componentWillMount() {
-    this.props.actions.loadProject(this.props.params.projectId);
+  componentDidMount() {
+    this.props.actions.loadProject(this.props.params);
   }
 
   render() {

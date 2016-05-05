@@ -6,8 +6,8 @@ import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
 
 class SprintForm extends Component {
-  componentWillMount() {
-    this.props.actions.loadSprint(this.props.params.sprintId);
+  componentDidMount() {
+    this.props.actions.loadSprint(this.props.params);
   }
 
   changeTicket(id, value) {
