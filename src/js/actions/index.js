@@ -1,4 +1,4 @@
-import 'isomorphic-fetch'
+import dataAPI from '../api/data'
 import {
   LOAD_PROJECTS_START,
   LOAD_PROJECTS_SUCCESS,
@@ -8,8 +8,6 @@ import {
   LOAD_TICKETS_SUCCESS,
   CHANGE_TICKET
 } from '../constants'
-
-const API_ROOT = 'http://localhost:3500/data'
 
 export function loadProjects(force) {
   return (dispatch, getState) => {
@@ -23,12 +21,10 @@ export function loadProjects(force) {
       type: LOAD_PROJECTS_START
     })
 
-    fetch(`${API_ROOT}/load/projects`).then(response => {
-      response.json().then(data => {
-        dispatch({
-          type: LOAD_PROJECTS_SUCCESS,
-          payload: data.entities.projects
-        });
+    return dataAPI.fetchProjects().then(data => {
+      dispatch({
+        type: LOAD_PROJECTS_SUCCESS,
+        payload: data.entities.projects
       })
     });
   }
@@ -46,16 +42,14 @@ export function loadProject(id) {
       type: LOAD_PROJECTS_START
     })
 
-    fetch(`${API_ROOT}/load/project/${id}`).then(response => {
-      response.json().then(data => {
-        dispatch({
-          type: LOAD_PROJECTS_SUCCESS,
-          payload: data.entities.projects
-        });
-        dispatch({
-          type: LOAD_SPRINTS_SUCCESS,
-          payload: data.entities.sprints
-        });
+    return dataAPI.fetchProject(id).then(data => {
+      dispatch({
+        type: LOAD_PROJECTS_SUCCESS,
+        payload: data.entities.projects
+      });
+      dispatch({
+        type: LOAD_SPRINTS_SUCCESS,
+        payload: data.entities.sprints
       });
     });
   }
@@ -73,17 +67,15 @@ export function loadSprint(id) {
       type: LOAD_SPRINTS_START
     })
 
-    fetch(`${API_ROOT}/load/sprint/${id}`).then(response => {
-      response.json().then(data => {
-        dispatch({
-          type: LOAD_SPRINTS_SUCCESS,
-          payload: data.entities.sprints
-        });
-        dispatch({
-          type: LOAD_TICKETS_SUCCESS,
-          payload: data.entities.tickets
-        });
-      })
+    return dataAPI.fetchSprint(id).then(data => {
+      dispatch({
+        type: LOAD_SPRINTS_SUCCESS,
+        payload: data.entities.sprints
+      });
+      dispatch({
+        type: LOAD_TICKETS_SUCCESS,
+        payload: data.entities.tickets
+      });
     });
   }
 }
@@ -100,13 +92,11 @@ export function loadTicket(id) {
       type: LOAD_TICKETS_START
     })
 
-    fetch(`${API_ROOT}/load/ticket/${id}`).then(response => {
-      response.json().then(data => {
-        dispatch({
-          type: LOAD_TICKETS_SUCCESS,
-          payload: data.entities.tickets
-        });
-      })
+    return dataAPI.fetchTicket(id).then(data => {
+      dispatch({
+        type: LOAD_TICKETS_SUCCESS,
+        payload: data.entities.tickets
+      });
     });
   }
 }
