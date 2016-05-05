@@ -9,7 +9,7 @@ import {
   CHANGE_TICKET
 } from '../constants'
 
-export function loadProjects(force) {
+export function loadProjects(params, force) {
   return (dispatch, getState) => {
     const { projects } = getState()
 

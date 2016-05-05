@@ -22,7 +22,10 @@ class ProjectList extends Component {
     return (
       <div>
         <h3>Реестр проектов</h3>
-        <Button value="Обновить" onClick={() => this.props.actions.loadProjects(true)}/>
+        <Button
+          value="Обновить"
+          onClick={() => this.props.actions.loadProjects({}, true)}
+        />
         {projects.length ? (
           <Grid columns={columns} rows={projects}/>
         ) : <Spinner/>}
