@@ -4,10 +4,15 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
+import { fetchNeeds } from '../utils/fetchComponentData'
 
-export default class SprintList extends Component {
+class SprintList extends Component {
+  static get needs() {
+    return [actions.loadProjects];
+  }
+
   componentDidMount() {
-    this.props.actions.loadProject(this.props.params);
+    fetchNeeds(SprintList.needs, this.props);
   }
 
   render() {
@@ -51,6 +56,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dispatch,
     actions: bindActionCreators(actions, dispatch)
   }
 }

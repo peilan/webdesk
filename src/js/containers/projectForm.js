@@ -4,10 +4,15 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import NavLink from '../components/controls/navlink'
 import Spinner from '../components/controls/spinner'
+import { fetchNeeds } from '../utils/fetchComponentData'
 
-export default class ProjectForm extends Component {
+class ProjectForm extends Component {
+  static get needs() {
+    return [actions.loadProject];
+  }
+
   componentDidMount() {
-    this.props.actions.loadProject(this.props.params);
+    fetchNeeds(ProjectForm.needs, this.props);
   }
 
   render() {
@@ -45,6 +50,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dispatch,
     actions: bindActionCreators(actions, dispatch)
   }
 }

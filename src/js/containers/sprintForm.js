@@ -4,10 +4,15 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
+import { fetchNeeds } from '../utils/fetchComponentData'
 
 class SprintForm extends Component {
+  static get needs() {
+    return [actions.loadSprint];
+  }
+
   componentDidMount() {
-    this.props.actions.loadSprint(this.props.params);
+    fetchNeeds(SprintForm.needs, this.props);
   }
 
   changeTicket(id, value) {
@@ -72,6 +77,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dispatch,
     actions: bindActionCreators(actions, dispatch)
   }
 }

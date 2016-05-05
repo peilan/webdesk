@@ -5,10 +5,15 @@ import * as actions from '../actions'
 import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
 import Button from '../components/controls/button'
+import { fetchNeeds } from '../utils/fetchComponentData'
 
 class ProjectList extends Component {
+  static get needs() {
+    return [actions.loadProjects];
+  }
+
   componentDidMount() {
-    this.props.actions.loadProjects();
+    fetchNeeds(ProjectList.needs, this.props);
   }
 
   render() {
@@ -44,6 +49,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dispatch,
     actions: bindActionCreators(actions, dispatch)
   }
 }

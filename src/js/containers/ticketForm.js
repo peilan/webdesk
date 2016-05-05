@@ -7,10 +7,15 @@ import Label from '../components/controls/label'
 import TextBox from '../components/controls/textBox'
 import CheckBox from '../components/controls/checkBox'
 import Memo from '../components/controls/memo'
+import { fetchNeeds } from '../utils/fetchComponentData'
 
-export default class TicketForm extends Component {
+class TicketForm extends Component {
+  static get needs() {
+    return [actions.loadTicket];
+  }
+
   componentDidMount() {
-    this.props.actions.loadTicket(this.props.params);
+    fetchNeeds(TicketForm.needs, this.props);
   }
 
   fieldChanged(field, value) {
@@ -60,6 +65,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dispatch,
     actions: bindActionCreators(actions, dispatch)
   }
 }
