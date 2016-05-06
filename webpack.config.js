@@ -1,12 +1,10 @@
-/*eslint-env node */
+/*eslint-env node*/
 const path = require('path');
 const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:3333',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     './src/js/index'
   ],
   output: {
@@ -16,13 +14,9 @@ module.exports = {
   },
   devtool: '#source-map',
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new htmlWebpackPlugin({
-      title: 'lexdesk web-client',
-      filename: 'index.html',
-      template: './src/index.html',
-      favicon: './favicon.ico'
-    })
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [
