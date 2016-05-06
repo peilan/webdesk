@@ -23,8 +23,12 @@ class SprintForm extends Component {
 
   render() {
     const { title, tickets } = this.props.sprint;
+    const { projectId, sprintId } = this.props.params;
+    const getUrl = id => {
+      return `/projects/${projectId}/sprints/${sprintId}/tickets/${id}`
+    }
     const columns = [
-      { caption: 'Id', field: 'id', type: 'link', base: './tickets/' },
+      { caption: 'Id', field: 'id', type: 'link', getUrl },
       { caption: 'Название', field: 'title',
         getFooterText: () => 'Сумма'
       },

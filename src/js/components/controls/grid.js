@@ -23,8 +23,8 @@ export default class Grid extends Component {
                   let content = cell;
 
                   if (column.type === 'link') {
-                    const base = column.base || './';
-                    content = <NavLink to={`${base}${value}`}>{cell}</NavLink>;
+                    const url = column.getUrl ? column.getUrl(value) : '';
+                    content = <NavLink to={url}>{cell}</NavLink>;
                   }
                   else if (column.type === 'checkbox') {
                     content = (

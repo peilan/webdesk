@@ -18,8 +18,11 @@ class ProjectList extends Component {
 
   render() {
     const { projects } = this.props;
+    const getUrl = id => {
+      return `/projects/${id}`
+    };
     const columns = [
-      { caption: 'Id', field: 'id', type: 'link' },
+      { caption: 'Id', field: 'id', type: 'link', getUrl },
       { caption: 'Название', field: 'title' },
       { caption: 'Создатель', field: 'user' }
     ]

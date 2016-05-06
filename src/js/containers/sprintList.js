@@ -8,7 +8,7 @@ import { fetchNeeds } from '../utils/fetchComponentData'
 
 class SprintList extends Component {
   static get needs() {
-    return [actions.loadProjects];
+    return [actions.loadProject];
   }
 
   componentDidMount() {
@@ -17,8 +17,12 @@ class SprintList extends Component {
 
   render() {
     const { project } = this.props;
+    const { projectId } = this.props.params;
+    const getUrl = id => {
+      return `/projects/${projectId}/sprints/${id}`
+    };
     const columns = [
-      { caption: 'Id', field: 'id', type: 'link' },
+      { caption: 'Id', field: 'id', type: 'link', getUrl },
       { caption: 'Название', field: 'title' },
       { caption: 'Создатель', field: 'user' }
     ]

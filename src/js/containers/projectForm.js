@@ -17,6 +17,7 @@ class ProjectForm extends Component {
 
   render() {
     const { project } = this.props;
+    const { projectId:id } = this.props.params;
 
     return (
       <div>
@@ -26,13 +27,13 @@ class ProjectForm extends Component {
             <div>Проект {project.title}</div>
             <ul>
               <li>
-                <NavLink to="./news">Новости</NavLink>
+                <NavLink to={`/projects/${id}/news`}>Новости</NavLink>
               </li>
               <li>
-                <NavLink to="./sprints">Спринты</NavLink>
+                <NavLink to={`/projects/${id}/sprints`}>Спринты</NavLink>
               </li>
               <li>
-                <NavLink to="./tickets">Заявки</NavLink>
+                <NavLink to={`/projects/${id}/tickets`}>Заявки</NavLink>
               </li>
             </ul>
           </div>
