@@ -12,11 +12,8 @@ const store = configureStore(window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
-    <Provider store={store}>
-      <Router
-        history={history}
-        routes={routes}
-      />
-    </Provider>,
+  <Provider store={store}>
+    <Router history={history} routes={routes}/>
+  </Provider>,
   document.getElementById('root')
 )
