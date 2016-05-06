@@ -17,6 +17,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../../../webpack.config');
 const compiler = webpack(config);
 const renderFullPage = require('./renderFullPage');
+const path = require('path');
+
+app.use('/assets', express.static(path.join(__dirname, '../../assets')));
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
@@ -51,9 +54,7 @@ app.use((req, res) => {
     .then(() => {
 			const initView = renderToString((
 				<Provider store={store}>
-          <RouterContext
-            { ...renderProps }
-          />
+          <RouterContext { ...renderProps }/>
 				</Provider>
 			))
 
@@ -72,9 +73,9 @@ app.get('*', function(req, res) {
 })
 
 app.use((err, req, res) => {
-  console.error("Error on request %s %s", req.method, req.url);
+  console.error('Error on request %s %s', req.method, req.url);
   console.error(err.stack);
-  res.status(500).send("Server error");
+  res.status(500).send('Server error');
 });
 
 process.on('uncaughtException', evt => {

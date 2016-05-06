@@ -1,5 +1,3 @@
-import '../css/style.css'
-import '../css/spinner.css'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
