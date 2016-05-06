@@ -3,31 +3,34 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  devtool: '#inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/js/index'
+    './src/js/index.js'
   ],
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/static/'
   },
-  devtool: '#source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    alias: {},
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
-    loaders: [
-      {
+    loaders: [{
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
+        loader: 'babel',
+        exclude: /node_modules/,
         include: path.join(__dirname, 'src'),
-        loaders: [
-          'react-hot',
-          'babel'
-        ]
+        query: {
+          presets: [ 'react-hmre', 'es2015', 'stage-2', 'react' ]
+        }
       }, {
         test: /\.css$/,
         loader: 'style!css'

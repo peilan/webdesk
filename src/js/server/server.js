@@ -16,6 +16,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../../../webpack.config');
 const compiler = webpack(config);
+const renderFullPage = require('./renderFullPage');
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
@@ -56,8 +57,8 @@ app.use((req, res) => {
 				</Provider>
 			))
 
-			let state = JSON.stringify( store.getState() );
-			let page = renderFullPage( initView, state )
+			let state = JSON.stringify(store.getState());
+			let page = renderFullPage(initView, state);
 
 			return page;
 		})
@@ -65,24 +66,6 @@ app.use((req, res) => {
     .catch(err => res.end(err.message));
 	});
 });
-
-function renderFullPage(html, initialState) {
-  return `
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-      <title>lexema helpdesk</title>
-    </head>
-    <body>
-      <div id="root">${html}</div>
-		    <script>
-          window.$REDUX_STATE = ${initialState};
-        </script>
-        <script src="/build/bundle.js"></script>
-    </body>
-  </html>`
-}
 
 app.get('*', function(req, res) {
 	res.status(404).send('Server.js > 404 - Page Not Found');

@@ -5,12 +5,10 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import applyMiddleware from 'react-router-apply-middleware'
-import { useRelativeLinks } from 'react-router-relative-links'
 import configureStore from './store/configureStore'
 import routes from './routes'
 
-const store = configureStore();
+const store = configureStore(window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
@@ -18,7 +16,6 @@ render(
       <Router
         history={history}
         routes={routes}
-        render={applyMiddleware(useRelativeLinks())}
       />
     </Provider>,
   document.getElementById('root')
