@@ -1,13 +1,9 @@
-.app-header {
-  border: 1px solid green;
-}
-
-.app-navigation {
-  border: 1px solid gray;
-}
-
 .link-active {
   color: green
+}
+
+ul.horizontal-menu {
+  margin-left: -40px;
 }
 
 ul.horizontal-menu li {
