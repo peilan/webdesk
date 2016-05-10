@@ -17,7 +17,7 @@ class UserForm extends Component {
   }
 
   fieldChanged(field, value) {
-    this.props.actions.changeUser(this.props.params.userId, {
+    this.props.actions.changeContract(this.props.params.userId, {
       [field]: value
     });
   }

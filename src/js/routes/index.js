@@ -14,6 +14,7 @@ import TicketForm from '../containers/ticketForm'
 import UserList from '../containers/userList'
 import UserForm from '../containers/userForm'
 import ContractList from '../containers/contractList'
+import ContractForm from '../containers/contractForm'
 
 export default (
   <Route name="Начало" path="/" component={Root}>
@@ -29,6 +30,10 @@ export default (
             <IndexRoute component={SprintForm}/>
             <Route name="Заявка" path="tickets/:ticketId" component={TicketForm}/>
             <Route name="Контракты" path="contracts" component={ContractList}/>
+            <Route name="Контракты" path="contracts" component={Vertex}>
+              <IndexRoute component={ContractList}/>
+              <Route name="Контракт" path=":contractId" component={ContractForm}/>
+            </Route>
           </Route>
         </Route>
         <Route name="Заявки" path="tickets" component={TicketList}/>

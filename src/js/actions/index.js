@@ -11,7 +11,8 @@ import {
   LOAD_CONTRACTS_START,
   LOAD_CONTRACTS_SUCCESS,
   LOAD_USERS_START,
-  LOAD_USERS_SUCCESS
+  LOAD_USERS_SUCCESS,
+  CHANGE_CONTRACT
 } from '../constants'
 
 export function loadProjects(params, force) {
@@ -206,6 +207,16 @@ export function changeTicket(id, data) {
 export function changeUser(id, data) {
   return {
     type: CHANGE_USER,
+    payload: {
+      id,
+      data
+    }
+  }
+}
+
+export function changeContract(id, data) {
+  return {
+    type: CHANGE_CONTRACT,
     payload: {
       id,
       data
