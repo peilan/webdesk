@@ -14,5 +14,14 @@ export default {
   },
   fetchTicket(id) {
     return fetchJSON(`${API_ROOT}/load/ticket/${id}`);
+  },
+  fetchContract(id) {
+    return fetchJSON(`${API_ROOT}/load/contract/${id}`);
+  },
+  fetchUsers(){
+    return fetchJSON(`${API_ROOT}/load/users`);
+  },
+  fetchUser(id) {
+    return fetchJSON(`${API_ROOT}/load/user/${id}`);
   }
 }
