@@ -7,35 +7,35 @@ import Spinner from '../components/controls/spinner'
 import Button from '../components/controls/button'
 import { fetchNeeds } from '../utils/fetchComponentData'
 
-class ProjectList extends Component {
+class UserList extends Component {
   static get needs() {
-    return [actions.loadProjects];
+    return [actions.loadUsers];
   }
 
   componentDidMount() {
-    fetchNeeds(ProjectList.needs, this.props);
+    fetchNeeds(UserList.needs, this.props);
   }
 
   render() {
-    const { projects } = this.props;
+    const { users } = this.props;
     const getUrl = id => {
-      return `/projects/${id}`
+      return `/users/${id}`
     };
     const columns = [
       { caption: 'Id', field: 'id', type: 'link', getUrl },
-      { caption: 'Название', field: 'title' },
-      { caption: 'Создатель', field: 'creator' }
+      { caption: 'Имя', field: 'name' },
+      { caption: 'Роль', field: 'role' }
     ]
 
     return (
       <div>
-        <h3>Реестр проектов</h3>
+        <h3>Реестр пользователей</h3>
         <Button
           value="Обновить"
-          onClick={() => this.props.actions.loadProjects({}, true)}
+          onClick={() => this.props.actions.loadUsers({}, true)}
         />
-        {projects.length ? (
-          <Grid columns={columns} rows={projects}/>
+        {users.length ? (
+          <Grid columns={columns} rows={users}/>
         ) : <Spinner/>}
       </div>
     );
@@ -44,12 +44,8 @@ class ProjectList extends Component {
 
 function mapStateToProps(state) {
   return {
-    projects: Object.keys(state.projects).map((id) => {
-      return {
-        ...{ id },
-        ...state.projects[id],
-        creator: state.users[state.projects[id].creator].name
-      };
+    users: Object.keys(state.users).map((id) => {
+      return { ...state.users[id], ...{ id } };
     })
   }
 }
@@ -61,4 +57,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectList)
+export default connect(mapStateToProps, mapDispatchToProps)(UserList)

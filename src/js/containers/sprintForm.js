@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 import Grid from '../components/controls/grid'
 import Spinner from '../components/controls/spinner'
+import NavLink from '../components/controls/navlink'
 import { fetchNeeds } from '../utils/fetchComponentData'
 
 class SprintForm extends Component {
@@ -49,6 +50,9 @@ class SprintForm extends Component {
         <h3>Форма спринта</h3>
         {(Object.keys(this.props.sprint).length > 1) ? (
           <div>
+            <NavLink to={`/projects/${projectId}/sprints/${sprintId}/contracts`}>
+              Контракты
+            </NavLink>
             <div>Заявки спринта {title}</div>
             <br/>
             <Grid

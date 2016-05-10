@@ -7,6 +7,7 @@ import {
   LOAD_TICKETS_START,
   LOAD_TICKETS_SUCCESS,
   CHANGE_TICKET,
+  CHANGE_USER,
   LOAD_CONTRACTS_START,
   LOAD_CONTRACTS_SUCCESS,
   LOAD_USERS_START,
@@ -29,7 +30,11 @@ export function loadProjects(params, force) {
       dispatch({
         type: LOAD_PROJECTS_SUCCESS,
         payload: data.entities.projects
-      })
+      });
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
+      });
     });
   }
 }
@@ -54,6 +59,10 @@ export function loadProject({ projectId }) {
       dispatch({
         type: LOAD_SPRINTS_SUCCESS,
         payload: data.entities.sprints
+      });
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
       });
     });
   }
@@ -80,6 +89,14 @@ export function loadSprint({ sprintId }) {
         type: LOAD_TICKETS_SUCCESS,
         payload: data.entities.tickets
       });
+      dispatch({
+        type: LOAD_CONTRACTS_SUCCESS,
+        payload: data.entities.contracts
+      });
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
+      });
     });
   }
 }
@@ -101,17 +118,11 @@ export function loadTicket({ ticketId }) {
         type: LOAD_TICKETS_SUCCESS,
         payload: data.entities.tickets
       });
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
+      });
     });
-  }
-}
-
-export function changeTicket(id, data) {
-  return {
-    type: CHANGE_TICKET,
-    payload: {
-      id,
-      data
-    }
   }
 }
 
@@ -131,6 +142,10 @@ export function loadContract({ contractId }) {
       dispatch({
         type: LOAD_CONTRACTS_SUCCESS,
         payload: data.entities.contracts
+      });
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
       });
     });
   }
@@ -175,5 +190,25 @@ export function loadUser({ userId }) {
         payload: data.entities.users
       });
     });
+  }
+}
+
+export function changeTicket(id, data) {
+  return {
+    type: CHANGE_TICKET,
+    payload: {
+      id,
+      data
+    }
+  }
+}
+
+export function changeUser(id, data) {
+  return {
+    type: CHANGE_USER,
+    payload: {
+      id,
+      data
+    }
   }
 }
