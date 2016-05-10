@@ -18,7 +18,7 @@ class ContractForm extends Component {
 
   fieldChanged(field, value) {
     this.props.actions.changeContract(this.props.params.contractId, {
-      [field]: parseInt(value)
+      [field]: parseInt(value, 10)
     });
   }
 
