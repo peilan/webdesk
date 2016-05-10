@@ -6,7 +6,11 @@ import {
   LOAD_SPRINTS_SUCCESS,
   LOAD_TICKETS_START,
   LOAD_TICKETS_SUCCESS,
-  CHANGE_TICKET
+  CHANGE_TICKET,
+  LOAD_CONTRACTS_START,
+  LOAD_CONTRACTS_SUCCESS,
+  LOAD_USERS_START,
+  LOAD_USERS_SUCCESS
 } from '../constants'
 
 export function loadProjects(params, force) {
@@ -108,5 +112,68 @@ export function changeTicket(id, data) {
       id,
       data
     }
+  }
+}
+
+export function loadContract({ contractId }) {
+  return (dispatch, getState) => {
+    const { contracts } = getState()
+
+    if (contracts[contractId]) {
+      return
+    }
+
+    dispatch({
+      type: LOAD_CONTRACTS_START
+    })
+
+    return dataAPI.fetchContract(contractId).then(data => {
+      dispatch({
+        type: LOAD_CONTRACTS_SUCCESS,
+        payload: data.entities.contracts
+      });
+    });
+  }
+}
+
+export function loadUsers(params, force) {
+  return (dispatch, getState) => {
+    const { users } = getState()
+
+    if (Object.keys(users).length && !force) {
+      return
+    }
+
+    dispatch({
+      type: LOAD_USERS_START
+    })
+
+    return dataAPI.fetchProjects().then(data => {
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
+      })
+    });
+  }
+}
+
+export function loadUser({ userId }) {
+  return (dispatch, getState) => {
+    const { users } = getState()
+
+    if (users[userId]) {
+      return
+    }
+
+    dispatch({
+      type: LOAD_USERS_START
+    })
+
+    return dataAPI.fetchUser(userId).then(data => {
+      dispatch({
+        type: LOAD_USERS_SUCCESS,
+        payload: data.entities.users
+      });
+    });
   }
 }
