@@ -27,7 +27,7 @@ class ContractForm extends Component {
 
     return (
       <div>
-        <h3>Форма заявки</h3>
+        <h3>Форма контракта</h3>
         {Object.keys(contract).length ? (
           <div>
             <Label value="Id"/>
